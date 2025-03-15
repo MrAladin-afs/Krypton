@@ -3,6 +3,7 @@ import Container from "@/components/container.astro";
 import Link from "@/components/ui/link.astro";
 import Dropdown from "./dropdown.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
+import { ModeToggle } from "@/components/ModeToggle";
 
 const menuitems = [
   {
@@ -44,12 +45,14 @@ const menuitems = [
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between">
         <a href="/" class="text-lg"
-          ><span class="font-bold text-slate-800">Astro</span><span
-            class="text-slate-500">ship</span
+          ><span class="font-bold text-primary">Astro</span><span
+            class="text-primary"
+          >ship</span
           >
         </a>
-        <div class="block lg:hidden">
-          <MenuIcon class="w-4 h-4 text-gray-800" />
+        <div class="block lg:hidden items-center justify-center space-x-3">
+          <ModeToggle client:load />
+          <MenuIcon class="w-8 h-8 text-primary translate-y-2.5" />
         </div>
       </div>
       <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
@@ -69,10 +72,10 @@ const menuitems = [
                   <li>
                     <a
                       href={item.path}
-                      class="flex lg:px-3 py-2 items-center text-gray-600 hover:text-gray-900">
+                      class="flex lg:px-3 py-2 items-center text-primary hover:text-primary/80">
                       <span> {item.title}</span>
                       {item.badge && (
-                        <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-white bg-indigo-600 rounded-full">
+                        <span class="ml-1 px-2 py-0.5 text-[10px] animate-pulse font-semibold uppercase text-primary-foreground bg-primary rounded-full">
                           New
                         </span>
                       )}
@@ -90,9 +93,9 @@ const menuitems = [
       </MenuItems>
     </Astronav>
     <div>
+   
       <div class="hidden lg:flex items-center gap-4">
-        <a href="#">Log in</a>
-        <Link href="#" size="md">Sign up</Link>
+        <ModeToggle client:load />
       </div>
     </div>
   </header>

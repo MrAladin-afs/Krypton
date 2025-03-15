@@ -1,53 +1,596 @@
 ---
-import { Picture } from "astro:assets";
-import heroImage from "@/assets/hero.png";
 import Link from "@/components/ui/link.astro";
 import { Icon } from "astro-icon/components";
+import FuturisticText from "./FuturisticText";
 ---
 
 <main
-  class="grid lg:grid-cols-2 place-items-center pt-16 pb-8 md:pt-12 md:pb-24">
-  <div class="py-6 md:order-1 hidden md:block">
-    <Picture
-      src={heroImage}
-      alt="Astronaut in the air"
-      widths={[200, 400, 600]}
-      sizes="(max-width: 800px) 100vw, 620px"
-      loading="eager"
-      format="avif"
-    />
-  </div>
-  <div>
+  class="grid lg:grid-cols-12 place-items-center pt-16 pb-8 md:pt-12 md:pb-24 px-4">
+  <!-- Content section - 5 columns on large screens -->
+  <div class="content-wrapper lg:col-span-5 lg:order-1">
     <h1
-      class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter">
-      Marketing website done with Astro
+      class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter futuristic-text">
+      Welcome to <span class="text-gradient">Krypton</span> Scripts
     </h1>
-    <p class="text-lg mt-4 text-slate-600 max-w-xl">
-      Astroship is a starter template for startups, marketing websites & landing
-      pages.<wbr /> Built with Astro.build and TailwindCSS. You can quickly create
-      any website with this starter.
-    </p>
-    <div class="mt-6 flex flex-col sm:flex-row gap-3">
+    <div class="text-xl mt-6 text-slate-600 dark:text-slate-300 max-w-xl">
+      <FuturisticText
+        client:load
+        phrases={[
+          "Creativity",
+          "Optimization",
+          "Cheap Price",
+          "24/7 Support",
+          "Futuristic Design",
+          "Premium Quality",
+        ]}
+        baseText="Get all the -"
+        className="text-2xl font-medium"
+        highlightClassName="font-bold"
+        typingSpeed={70}
+        deletingSpeed={40}
+        delayBetweenPhrases={1800}
+        cursorStyle="bar"
+        shimmerEffect={true}
+        cursorColor="var(--primary)"
+        showBaseTextOnMobile={true}
+      />
+      <p class="mt-6 text-xl leading-relaxed">
+        You will get - 24/7 support and everything you need for your project
+        with our premium development solutions.
+      </p>
+    </div>
+    <div class="mt-8 flex flex-col sm:flex-row gap-4">
       <Link
         href="#"
-        href="https://web3templates.com/templates/astroship-starter-website-template-for-astro"
-        target="_blank"
-        class="flex gap-1 items-center justify-center"
+        class="flex gap-2 items-center justify-center futuristic-button primary-button"
         rel="noopener">
-        <Icon class="text-white w-5 h-5" name="bx:bxs-cloud-download" />
-
-        Download for Free
+        <Icon class="text-white w-5 h-5" name="bx:bxs-rocket" />
+        Get Started
       </Link>
       <Link
         size="lg"
         style="outline"
         rel="noopener"
-        href="https://github.com/surjithctly/astroship"
-        class="flex gap-1 items-center justify-center"
+        href="#"
+        class="flex gap-2 items-center justify-center futuristic-button secondary-button"
         target="_blank">
-        <Icon class="text-black w-4 h-4" name="bx:bxl-github" />
-        GitHub Repo
+        <Icon class="w-5 h-5" name="bx:bxs-info-circle" />
+        Learn More
       </Link>
     </div>
   </div>
+
+  <!-- Video section - 7 columns on large screens -->
+  <div class="video-container lg:col-span-7 lg:order-2 w-full">
+    <div class="video-wrapper">
+      <iframe
+        width="100%"
+        height="100%"
+        src="https://www.youtube.com/embed/s8WHY3Gusx0?controls=0&showinfo=0&rel=0&modestbranding=1&autoplay=1&mute=1&loop=1&playlist=s8WHY3Gusx0&disablekb=1&iv_load_policy=3&fs=0"
+        title="Formula One: Explained!"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen
+        loading="lazy"
+        class="video-frame"></iframe>
+    </div>
+    <div class="outer-glow-container">
+      <div class="outer-glow top"></div>
+      <div class="outer-glow right"></div>
+      <div class="outer-glow bottom"></div>
+      <div class="outer-glow left"></div>
+      <div class="outer-glow-corner top-left"></div>
+      <div class="outer-glow-corner top-right"></div>
+      <div class="outer-glow-corner bottom-left"></div>
+      <div class="outer-glow-corner bottom-right"></div>
+    </div>
+  </div>
 </main>
+
+<style>
+  /* Enhanced futuristic styling */
+  main {
+    position: relative;
+    overflow: hidden;
+  }
+
+  main::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+      circle at center,
+      rgba(var(--primary), 0.08) 0%,
+      transparent 70%
+    );
+    z-index: -1;
+    animation: pulse 10s infinite;
+  }
+
+  .content-wrapper {
+    padding: 1rem;
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+  }
+
+  .text-gradient {
+    background: linear-gradient(to right, var(--primary), #4f46e5, #6366f1);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    display: inline-block;
+    position: relative;
+  }
+
+  .text-gradient::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    transform: translateX(-100%);
+    animation: shimmer 3s infinite;
+  }
+
+  /* Video container styling - significantly enhanced */
+  .video-container {
+    padding: 1rem;
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    border-radius: 1.5rem;
+    overflow: hidden;
+    background: #000;
+    margin: 1.5rem auto;
+    z-index: 2;
+    box-shadow: none;
+  }
+
+  .video-frame {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 1.25rem;
+    z-index: 1;
+    filter: brightness(1.4) contrast(1.05);
+  }
+
+  /* Outer glow container */
+  .outer-glow-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Edge glow effect - now outside the video */
+  .outer-glow {
+    position: absolute;
+    background: linear-gradient(to right, var(--primary), #4f46e5, #6366f1);
+    opacity: 0.9;
+    filter: blur(25px);
+    animation: pulse-edge 3s infinite alternate;
+  }
+
+  .outer-glow.top {
+    top: 0;
+    left: 2rem;
+    right: 2rem;
+    height: 30px;
+    transform: translateY(-50%);
+  }
+
+  .outer-glow.right {
+    top: 2rem;
+    bottom: 2rem;
+    right: 0;
+    width: 30px;
+    transform: translateX(50%);
+  }
+
+  .outer-glow.bottom {
+    bottom: 0;
+    left: 2rem;
+    right: 2rem;
+    height: 30px;
+    transform: translateY(50%);
+  }
+
+  .outer-glow.left {
+    top: 2rem;
+    bottom: 2rem;
+    left: 0;
+    width: 30px;
+    transform: translateX(-50%);
+  }
+
+  /* Corner glows */
+  .outer-glow-corner {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.9;
+    z-index: 1;
+    animation: pulse 4s infinite alternate;
+  }
+
+  .outer-glow-corner.top-left {
+    top: 0;
+    left: 0;
+    transform: translate(-30%, -30%);
+    background: radial-gradient(
+      circle,
+      rgba(var(--primary), 0.9) 0%,
+      transparent 70%
+    );
+  }
+
+  .outer-glow-corner.top-right {
+    top: 0;
+    right: 0;
+    transform: translate(30%, -30%);
+    background: radial-gradient(
+      circle,
+      rgba(79, 70, 229, 0.9) 0%,
+      transparent 70%
+    );
+  }
+
+  .outer-glow-corner.bottom-left {
+    bottom: 0;
+    left: 0;
+    transform: translate(-30%, 30%);
+    background: radial-gradient(
+      circle,
+      rgba(99, 102, 241, 0.9) 0%,
+      transparent 70%
+    );
+  }
+
+  .outer-glow-corner.bottom-right {
+    bottom: 0;
+    right: 0;
+    transform: translate(30%, 30%);
+    background: radial-gradient(
+      circle,
+      rgba(var(--primary), 0.9) 0%,
+      transparent 70%
+    );
+  }
+
+  @keyframes pulse-edge {
+    0% {
+      opacity: 0.7;
+      filter: blur(25px);
+    }
+    100% {
+      opacity: 1;
+      filter: blur(40px);
+    }
+  }
+
+  /* Video overlay to hide YouTube controls and branding */
+  .video-overlay {
+    position: absolute;
+    z-index: 3;
+    pointer-events: none; /* Allow clicks to pass through */
+  }
+
+  .video-overlay.top {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; /* Height to cover the YouTube title bar */
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.8) 50%,
+      transparent 100%
+    );
+  }
+
+  .video-overlay.bottom {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 80px; /* Height to cover the YouTube controls */
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.8) 50%,
+      transparent 100%
+    );
+  }
+
+  .video-overlay.left {
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.95) 0%,
+      transparent 100%
+    );
+  }
+
+  .video-overlay.right {
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0.95) 0%,
+      transparent 100%
+    );
+  }
+
+  /* Glowing effects - enhanced */
+  .glow-effect {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.8;
+    z-index: 0;
+    animation: pulse 4s infinite alternate;
+  }
+
+  .glow-effect.top-left {
+    top: -70px;
+    left: -70px;
+    animation-delay: 0s;
+    background: radial-gradient(
+      circle,
+      rgba(var(--primary), 0.9) 0%,
+      transparent 70%
+    );
+  }
+
+  .glow-effect.top-right {
+    top: -70px;
+    right: -70px;
+    animation-delay: 0.5s;
+    background: radial-gradient(
+      circle,
+      rgba(79, 70, 229, 0.9) 0%,
+      transparent 70%
+    );
+  }
+
+  .glow-effect.bottom-left {
+    bottom: -70px;
+    left: -70px;
+    animation-delay: 1s;
+    background: radial-gradient(
+      circle,
+      rgba(99, 102, 241, 0.9) 0%,
+      transparent 70%
+    );
+  }
+
+  .glow-effect.bottom-right {
+    bottom: -70px;
+    right: -70px;
+    animation-delay: 1.5s;
+    background: radial-gradient(
+      circle,
+      rgba(var(--primary), 0.9) 0%,
+      transparent 70%
+    );
+  }
+
+  /* Corner accents - enhanced */
+  .corner-accent {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    z-index: 2;
+    opacity: 0.95;
+  }
+
+  .corner-accent.top-left {
+    top: 0;
+    left: 0;
+    border-top: 5px solid rgba(var(--primary), 0.9);
+    border-left: 5px solid rgba(var(--primary), 0.9);
+    border-top-left-radius: 0.8rem;
+    box-shadow: -5px -5px 20px rgba(var(--primary), 0.7);
+  }
+
+  .corner-accent.top-right {
+    top: 0;
+    right: 0;
+    border-top: 5px solid rgba(79, 70, 229, 0.9);
+    border-right: 5px solid rgba(79, 70, 229, 0.9);
+    border-top-right-radius: 0.8rem;
+    box-shadow: 5px -5px 20px rgba(79, 70, 229, 0.7);
+  }
+
+  .corner-accent.bottom-left {
+    bottom: 0;
+    left: 0;
+    border-bottom: 5px solid rgba(99, 102, 241, 0.9);
+    border-left: 5px solid rgba(99, 102, 241, 0.9);
+    border-bottom-left-radius: 0.8rem;
+    box-shadow: -5px 5px 20px rgba(99, 102, 241, 0.7);
+  }
+
+  .corner-accent.bottom-right {
+    bottom: 0;
+    right: 0;
+    border-bottom: 5px solid rgba(var(--primary), 0.9);
+    border-right: 5px solid rgba(var(--primary), 0.9);
+    border-bottom-right-radius: 0.8rem;
+    box-shadow: 5px 5px 20px rgba(var(--primary), 0.7);
+  }
+
+  /* Scan line effect - enhanced */
+  .scan-line {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      rgba(var(--primary), 0.9),
+      rgba(79, 70, 229, 0.9),
+      rgba(var(--primary), 0.9),
+      transparent
+    );
+    z-index: 2;
+    animation: scan 2.5s linear infinite;
+    box-shadow: 0 0 25px rgba(var(--primary), 0.9);
+  }
+
+  @keyframes scan {
+    0% {
+      top: 0;
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      top: 100%;
+      opacity: 0.8;
+    }
+  }
+
+  /* Button styling - enhanced */
+  .futuristic-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .futuristic-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: all 0.6s ease;
+  }
+
+  .futuristic-button:hover::before {
+    left: 100%;
+  }
+
+  .primary-button {
+    background: linear-gradient(to right, var(--primary), #4f46e5);
+    color: white;
+    box-shadow: 0 0 20px rgba(var(--primary), 0.5);
+  }
+
+  .primary-button:hover {
+    box-shadow: 0 0 30px rgba(var(--primary), 0.7);
+    transform: translateY(-3px);
+  }
+
+  .secondary-button {
+    background: transparent;
+    color: var(--foreground);
+    border: 2px solid;
+    border-image: linear-gradient(to right, var(--primary), #4f46e5) 1;
+  }
+
+  .secondary-button:hover {
+    background: rgba(var(--primary), 0.15);
+    transform: translateY(-3px);
+  }
+
+  @keyframes pulse {
+    0% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 0.9;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 1023px) {
+    .video-wrapper {
+      transform: none;
+      margin: 0 auto 2rem auto;
+      max-width: 95%;
+    }
+
+    h1 {
+      font-size: 3rem;
+      text-align: center;
+    }
+
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  @media (max-width: 640px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .video-wrapper {
+      max-width: 100%;
+    }
+  }
+</style>
