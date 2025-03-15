@@ -63,10 +63,11 @@ import FuturisticText from "./FuturisticText";
   <!-- Video section - 7 columns on large screens -->
   <div class="video-container lg:col-span-7 lg:order-2 w-full">
     <div class="video-wrapper">
+      <!-- Enhanced YouTube embed with all controls hidden -->
       <iframe
         width="100%"
         height="100%"
-        src="https://www.youtube.com/embed/s8WHY3Gusx0?controls=0&showinfo=0&rel=0&modestbranding=1&autoplay=1&mute=1&loop=1&playlist=s8WHY3Gusx0&disablekb=1&iv_load_policy=3&fs=0"
+        src="https://www.youtube-nocookie.com/embed/s8WHY3Gusx0?controls=0&showinfo=0&rel=0&modestbranding=1&autoplay=1&mute=1&loop=1&playlist=s8WHY3Gusx0&disablekb=1&iv_load_policy=3&fs=0&playsinline=1"
         title="Formula One: Explained!"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -74,6 +75,12 @@ import FuturisticText from "./FuturisticText";
         allowfullscreen
         loading="lazy"
         class="video-frame"></iframe>
+
+      <!-- Video overlays to hide YouTube branding -->
+      <div class="video-overlay top"></div>
+      <div class="video-overlay bottom"></div>
+      <div class="video-overlay left"></div>
+      <div class="video-overlay right"></div>
     </div>
     <div class="outer-glow-container">
       <div class="outer-glow top"></div>
@@ -175,6 +182,63 @@ import FuturisticText from "./FuturisticText";
     border-radius: 1.25rem;
     z-index: 1;
     filter: brightness(1.4) contrast(1.05);
+  }
+
+  /* Video overlay to hide YouTube controls and branding */
+  .video-overlay {
+    position: absolute;
+    z-index: 3;
+    pointer-events: none; /* Allow clicks to pass through to the video */
+  }
+
+  .video-overlay.top {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* Height to cover the YouTube title bar */
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.8) 50%,
+      transparent 100%
+    );
+  }
+
+  .video-overlay.bottom {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px; /* Height to cover the YouTube controls */
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.95) 0%,
+      rgba(0, 0, 0, 0.8) 50%,
+      transparent 100%
+    );
+  }
+
+  .video-overlay.left {
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.95) 0%,
+      transparent 100%
+    );
+  }
+
+  .video-overlay.right {
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 100%;
+    background: linear-gradient(
+      to left,
+      rgba(0, 0, 0, 0.95) 0%,
+      transparent 100%
+    );
   }
 
   /* Outer glow container */
@@ -294,63 +358,6 @@ import FuturisticText from "./FuturisticText";
       opacity: 1;
       filter: blur(40px);
     }
-  }
-
-  /* Video overlay to hide YouTube controls and branding */
-  .video-overlay {
-    position: absolute;
-    z-index: 3;
-    pointer-events: none; /* Allow clicks to pass through */
-  }
-
-  .video-overlay.top {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 80px; /* Height to cover the YouTube title bar */
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.95) 0%,
-      rgba(0, 0, 0, 0.8) 50%,
-      transparent 100%
-    );
-  }
-
-  .video-overlay.bottom {
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 80px; /* Height to cover the YouTube controls */
-    background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.95) 0%,
-      rgba(0, 0, 0, 0.8) 50%,
-      transparent 100%
-    );
-  }
-
-  .video-overlay.left {
-    top: 0;
-    left: 0;
-    width: 30px;
-    height: 100%;
-    background: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.95) 0%,
-      transparent 100%
-    );
-  }
-
-  .video-overlay.right {
-    top: 0;
-    right: 0;
-    width: 30px;
-    height: 100%;
-    background: linear-gradient(
-      to left,
-      rgba(0, 0, 0, 0.95) 0%,
-      transparent 100%
-    );
   }
 
   /* Glowing effects - enhanced */
