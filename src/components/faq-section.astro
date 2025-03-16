@@ -62,57 +62,101 @@ const faqItems = [
       "Yes, we offer a 14-day free trial with full access to all features. No credit card is required to start your trial, allowing you to thoroughly evaluate Krypton before making a commitment.",
   },
 ];
+
+// Group FAQs into categories for better organization
+const faqCategories = [
+  {
+    title: "Product Information",
+    items: [faqItems[0], faqItems[1], faqItems[2]],
+  },
+  {
+    title: "Pricing & Payment",
+    items: [faqItems[3], faqItems[5], faqItems[8], faqItems[9]],
+  },
+  {
+    title: "Support & Services",
+    items: [faqItems[4], faqItems[6], faqItems[7]],
+  },
+];
 ---
 
-<section class="relative py-20 overflow-hidden">
-  <!-- Background pattern -->
+<section 
+  class="relative py-20 overflow-hidden" 
+  aria-labelledby="faq-heading">
+  <!-- Background pattern with reduced motion preference support -->
   <div class="absolute inset-0 bg-grid-pattern opacity-5"></div>
 
-  <!-- Decorative elements -->
+  <!-- Decorative elements with reduced opacity for better contrast -->
   <div
-    class="absolute top-0 left-1/4 w-64 h-64 bg-indigo-500/20 rounded-full filter blur-3xl">
+    class="absolute top-0 left-1/4 w-64 h-64 bg-indigo-500/10 rounded-full filter blur-3xl"
+    aria-hidden="true">
   </div>
   <div
-    class="absolute bottom-0 right-1/4 w-80 h-80 bg-purple-500/20 rounded-full filter blur-3xl">
+    class="absolute bottom-0 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full filter blur-3xl"
+    aria-hidden="true">
   </div>
 
   <div class="container mx-auto px-4 relative z-10">
     <div class="text-center mb-16">
       <h2
+        id="faq-heading"
         class="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-500 animate-text">
         Frequently Asked Questions
       </h2>
       <p class="text-lg text-gray-300 max-w-2xl mx-auto">
         Find answers to common questions about Krypton. Can't find what you're
         looking for?
-        <span
-          class="text-indigo-400 hover:text-purple-400 transition-colors duration-300"
-          >Contact our support team</span
-        >.
+        <a
+          href="/contact"
+          class="text-indigo-400 hover:text-purple-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm">
+          Contact our support team
+        </a>.
       </p>
     </div>
 
-    <div class="max-w-3xl mx-auto">
-      <!-- FAQ Glass Container -->
-      <div class="backdrop-blur-lg bg-black/10 rounded-2xl p-1 shadow-xl">
-        <div class="bg-black/40 rounded-2xl p-6 md:p-8">
-          <!-- FAQ Items -->
-          <div class="space-y-4">
-            {
-              faqItems.map((item) => (
+    <div class="max-w-4xl mx-auto">
+      <!-- FAQ Categories Tabs -->
+      <div class="mb-8 flex justify-center" role="tablist" aria-label="FAQ Categories">
+        {faqCategories.map((category, index) => (
+          <button
+            id={`tab-${index}`}
+            class="faq-tab-btn px-4 py-2 mx-1 rounded-full text-gray-300 hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-black"
+            role="tab"
+            aria-selected={index === 0 ? "true" : "false"}
+            aria-controls={`tabpanel-${index}`}
+            data-index={index}>
+            {category.title}
+          </button>
+        ))}
+      </div>
+
+      <!-- FAQ Category Panels -->
+      {faqCategories.map((category, categoryIndex) => (
+        <div
+          id={`tabpanel-${categoryIndex}`}
+          role="tabpanel"
+          aria-labelledby={`tab-${categoryIndex}`}
+          class="faq-tab-panel backdrop-blur-lg bg-black/10 rounded-2xl p-1 shadow-xl mb-8 transition-all duration-300"
+          style={categoryIndex === 0 ? "" : "display: none;"}>
+          <div class="bg-black/40 rounded-2xl p-6 md:p-8">
+            <!-- FAQ Items -->
+            <div class="space-y-4">
+              {category.items.map((item) => (
                 <div class="faq-item rounded-xl overflow-hidden" id={item.id}>
-                  <button
-                    class="faq-question group w-full flex items-center justify-between p-5 bg-black/20 hover:bg-black/30 rounded-xl text-left transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
-                    aria-expanded="false"
-                    aria-controls={`${item.id}-answer`}>
-                    <span class="text-lg font-medium group-hover:text-indigo-400 transition-colors duration-300">
-                      {item.question}
-                    </span>
-                    <div class="faq-icon-container relative flex-shrink-0 ml-4 w-6 h-6 rounded-full border border-indigo-500/50 group-hover:border-indigo-400 transition-colors duration-300">
-                      <span class="faq-icon-vertical absolute top-1/2 left-1/2 w-3 h-0.5 -translate-x-1/2 -translate-y-1/2 bg-indigo-400 transition-transform duration-300" />
-                      <span class="faq-icon-horizontal absolute top-1/2 left-1/2 w-0.5 h-3 -translate-x-1/2 -translate-y-1/2 bg-indigo-400 transition-transform duration-300" />
-                    </div>
-                  </button>
+                  <h3>
+                    <button
+                      class="faq-question group w-full flex items-center justify-between p-5 bg-black/20 hover:bg-black/30 rounded-xl text-left transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500/50"
+                      aria-expanded="false"
+                      aria-controls={`${item.id}-answer`}>
+                      <span class="text-lg font-medium group-hover:text-indigo-400 transition-colors duration-300">
+                        {item.question}
+                      </span>
+                      <span class="faq-icon-container relative flex-shrink-0 ml-4 w-6 h-6 rounded-full border border-indigo-500/50 group-hover:border-indigo-400 transition-colors duration-300" aria-hidden="true">
+                        <span class="faq-icon-vertical absolute top-1/2 left-1/2 w-3 h-0.5 -translate-x-1/2 -translate-y-1/2 bg-indigo-400 transition-transform duration-300" />
+                        <span class="faq-icon-horizontal absolute top-1/2 left-1/2 w-0.5 h-3 -translate-x-1/2 -translate-y-1/2 bg-indigo-400 transition-transform duration-300" />
+                      </span>
+                    </button>
+                  </h3>
                   <div
                     class="faq-answer overflow-hidden max-h-0 opacity-0 transition-all duration-500 ease-in-out"
                     id={`${item.id}-answer`}
@@ -122,8 +166,36 @@ const faqItems = [
                     </div>
                   </div>
                 </div>
-              ))
-            }
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+
+      <!-- Search FAQ -->
+      <div class="backdrop-blur-lg bg-black/10 rounded-2xl p-1 shadow-xl mb-8">
+        <div class="bg-black/40 rounded-2xl p-6 md:p-8">
+          <div class="relative">
+            <label for="faq-search" class="sr-only">Search FAQs</label>
+            <input
+              type="text"
+              id="faq-search"
+              class="w-full bg-black/30 border border-gray-700 rounded-xl px-4 py-3 pl-12 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors duration-300"
+              placeholder="Search for answers..."
+              aria-label="Search frequently asked questions"
+            />
+            <svg 
+              xmlns="http://www.w3.org/2000/svg" 
+              class="h-6 w-6 absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" 
+              fill="none" 
+              viewBox="0 0 24 24" 
+              stroke="currentColor"
+              aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+          <div id="search-results" class="mt-4 space-y-2 hidden">
+            <!-- Search results will be populated here via JavaScript -->
           </div>
         </div>
       </div>
@@ -133,7 +205,8 @@ const faqItems = [
         <p class="text-gray-400 mb-4">Still have questions?</p>
         <a
           href="/contact"
-          class="inline-block px-8 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full text-white font-medium hover:shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 transform hover:-translate-y-1">
+          class="inline-block px-8 py-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full text-white font-medium hover:shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-black"
+          aria-label="Contact our support team">
           Get in touch
         </a>
       </div>
@@ -152,9 +225,12 @@ const faqItems = [
     background-size: 40px 40px;
   }
 
-  .animate-text {
-    background-size: 200% auto;
-    animation: textShine 5s ease-in-out infinite alternate;
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-text {
+      background-size: 200% auto;
+      animation: textShine 5s ease-in-out infinite alternate;
+    }
   }
 
   @keyframes textShine {
@@ -186,33 +262,68 @@ const faqItems = [
     max-height: 1000px;
     opacity: 1;
   }
+
+  /* Tab styles */
+  .faq-tab-btn[aria-selected="true"] {
+    background-color: rgba(99, 102, 241, 0.2);
+    color: white;
+    font-weight: 500;
+  }
+
+  /* High contrast focus styles for accessibility */
+  :focus-visible {
+    outline: 2px solid rgb(129, 140, 248);
+    outline-offset: 2px;
+  }
+
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    
+    .animate-text {
+      animation: none;
+    }
+    
+    .faq-answer,
+    .faq-item.active .faq-answer,
+    .faq-icon-vertical,
+    .faq-item.active .faq-icon-vertical {
+      transition-duration: 0.1s;
+    }
+  }
 </style>
 
 <script>
   // Add interactivity to FAQ items
   document.addEventListener("DOMContentLoaded", () => {
+    // FAQ Accordion functionality
     const faqItems = document.querySelectorAll(".faq-item");
-
+    
     faqItems.forEach((item) => {
-      const button = item.querySelector(".faq-question");
-      const answer = item.querySelector(".faq-answer");
-      const verticalIcon = item.querySelector(".faq-icon-vertical");
-
+      const button = item.querySelector(".faq-question") as HTMLButtonElement;
+      const answer = item.querySelector(".faq-answer") as HTMLElement;
+      
       if (button && answer) {
         button.addEventListener("click", () => {
           const expanded = button.getAttribute("aria-expanded") === "true";
-
+          
           // Toggle current item
           button.setAttribute("aria-expanded", expanded ? "false" : "true");
           answer.setAttribute("aria-hidden", expanded ? "true" : "false");
           item.classList.toggle("active");
-
-          // Optional: Close other items when opening this one
+          
+          // Close other items when opening this one
           if (!expanded) {
             faqItems.forEach((otherItem) => {
               if (otherItem !== item) {
-                const otherButton = otherItem.querySelector(".faq-question");
-                const otherAnswer = otherItem.querySelector(".faq-answer");
+                const otherButton = otherItem.querySelector(".faq-question") as HTMLButtonElement;
+                const otherAnswer = otherItem.querySelector(".faq-answer") as HTMLElement;
                 otherItem.classList.remove("active");
                 if (otherButton) {
                   otherButton.setAttribute("aria-expanded", "false");
@@ -226,58 +337,263 @@ const faqItems = [
         });
       }
     });
+    
+    // Tab functionality
+    const tabButtons = document.querySelectorAll<HTMLButtonElement>(".faq-tab-btn");
+    const tabPanels = document.querySelectorAll<HTMLElement>(".faq-tab-panel");
+    
+    tabButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const index = button.getAttribute("data-index");
+        
+        // Update tab button states
+        tabButtons.forEach((btn) => {
+          btn.setAttribute("aria-selected", "false");
+          btn.classList.remove("active");
+        });
+        button.setAttribute("aria-selected", "true");
+        button.classList.add("active");
+        
+        // Show selected panel, hide others
+        tabPanels.forEach((panel, i) => {
+          if (i.toString() === index) {
+            panel.style.display = "block";
+            // Use requestAnimationFrame for smooth transition
+            requestAnimationFrame(() => {
+              panel.style.opacity = "1";
+            });
+          } else {
+            panel.style.opacity = "0";
+            panel.style.display = "none";
+          }
+        });
+      });
+    });
+    
+    // Search functionality
+    const searchInput = document.getElementById("faq-search") as HTMLInputElement;
+    const searchResults = document.getElementById("search-results") as HTMLElement;
+    const allFaqItems = Array.from(faqItems);
+    
+    // Make faqCategories available in the script
+    const faqCategoriesData = [
+      {
+        title: "Product Information",
+        items: ["faq-1", "faq-2", "faq-3"],
+      },
+      {
+        title: "Pricing & Payment",
+        items: ["faq-4", "faq-6", "faq-9", "faq-10"],
+      },
+      {
+        title: "Support & Services",
+        items: ["faq-5", "faq-7", "faq-8"],
+      },
+    ];
+    
+    if (searchInput && searchResults) {
+      searchInput.addEventListener("input", (e) => {
+        const query = searchInput.value.toLowerCase().trim();
+        
+        if (query.length < 2) {
+          searchResults.innerHTML = "";
+          searchResults.classList.add("hidden");
+          return;
+        }
+        
+        // Search through all FAQ items
+        const results = allFaqItems.filter((item) => {
+          const question = item.querySelector(".faq-question span")?.textContent?.toLowerCase() || "";
+          const answer = item.querySelector(".faq-answer p")?.textContent?.toLowerCase() || "";
+          return question.includes(query) || answer.includes(query);
+        });
+        
+        // Display results
+        searchResults.innerHTML = "";
+        searchResults.classList.remove("hidden");
+        
+        if (results.length === 0) {
+          searchResults.innerHTML = `
+            <p class="text-gray-400 py-2">No results found for "${query}"</p>
+          `;
+          return;
+        }
+        
+        results.forEach((result) => {
+          const question = result.querySelector(".faq-question span")?.textContent;
+          const resultId = result.id;
+          
+          const resultElement = document.createElement("div");
+          resultElement.className = "p-3 bg-black/20 rounded-lg hover:bg-black/30 transition-colors duration-300";
+          resultElement.innerHTML = `
+            <button class="w-full text-left text-indigo-400 hover:text-indigo-300 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-black rounded-sm">
+              ${question}
+            </button>
+          `;
+          
+          const resultButton = resultElement.querySelector("button") as HTMLButtonElement;
+          if (resultButton) {
+            resultButton.addEventListener("click", () => {
+              // Find which tab contains this result
+              let tabIndex = -1;
+              faqCategoriesData.forEach((category, idx) => {
+                if (category.items.includes(resultId)) {
+                  tabIndex = idx;
+                }
+              });
+              
+              if (tabIndex >= 0) {
+                // Activate the correct tab
+                const targetTabButton = tabButtons[tabIndex];
+                if (targetTabButton) {
+                  targetTabButton.click();
+                }
+                
+                // Find and open the FAQ item
+                setTimeout(() => {
+                  const targetItem = document.getElementById(resultId);
+                  if (targetItem) {
+                    const targetButton = targetItem.querySelector(".faq-question") as HTMLButtonElement;
+                    if (targetButton) {
+                      // Scroll to the item
+                      targetItem.scrollIntoView({ behavior: "smooth", block: "center" });
+                      
+                      // Open the item if it's not already open
+                      if (targetButton.getAttribute("aria-expanded") !== "true") {
+                        targetButton.click();
+                      }
+                      
+                      // Focus on the button
+                      targetButton.focus();
+                    }
+                  }
+                  
+                  // Clear search
+                  searchInput.value = "";
+                  searchResults.classList.add("hidden");
+                }, 100);
+              }
+            });
+          }
+          
+          searchResults.appendChild(resultElement);
+        });
+      });
+    }
 
     // Add keyboard navigation
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Tab") return; // Let default tab behavior work
 
-      const activeElement = document.activeElement;
+      const activeElement = document.activeElement as HTMLElement;
       if (!activeElement || !activeElement.classList.contains("faq-question"))
         return;
 
-      const currentItem = activeElement.closest(".faq-item");
+      const currentItem = activeElement.closest(".faq-item") as HTMLElement;
       if (!currentItem) return;
 
-      const allItems = Array.from(document.querySelectorAll(".faq-item"));
-      const currentIndex = allItems.indexOf(currentItem);
+      // Get visible items from the current active tab
+      const visiblePanel = document.querySelector(".faq-tab-panel[style*='display: block']") || 
+                          document.querySelector(".faq-tab-panel:not([style*='display: none'])");
+      
+      if (!visiblePanel) return;
+      
+      const visibleItems = Array.from(visiblePanel.querySelectorAll(".faq-item"));
+      const currentIndex = visibleItems.indexOf(currentItem);
 
       let nextIndex: number;
-      let nextButton: HTMLElement | null;
+      let nextButton: HTMLButtonElement | null;
 
       switch (e.key) {
         case "ArrowDown":
           e.preventDefault();
-          nextIndex = (currentIndex + 1) % allItems.length;
-          nextButton = allItems[nextIndex].querySelector(
+          nextIndex = (currentIndex + 1) % visibleItems.length;
+          nextButton = visibleItems[nextIndex].querySelector(
             ".faq-question"
-          ) as HTMLElement;
+          ) as HTMLButtonElement;
           if (nextButton) nextButton.focus();
           break;
         case "ArrowUp":
           e.preventDefault();
-          nextIndex = (currentIndex - 1 + allItems.length) % allItems.length;
-          nextButton = allItems[nextIndex].querySelector(
+          nextIndex = (currentIndex - 1 + visibleItems.length) % visibleItems.length;
+          nextButton = visibleItems[nextIndex].querySelector(
             ".faq-question"
-          ) as HTMLElement;
+          ) as HTMLButtonElement;
           if (nextButton) nextButton.focus();
           break;
         case "Home":
           e.preventDefault();
-          nextButton = allItems[0].querySelector(
+          nextButton = visibleItems[0].querySelector(
             ".faq-question"
-          ) as HTMLElement;
+          ) as HTMLButtonElement;
           if (nextButton) nextButton.focus();
           break;
         case "End":
           e.preventDefault();
-          nextButton = allItems[allItems.length - 1].querySelector(
+          nextButton = visibleItems[visibleItems.length - 1].querySelector(
             ".faq-question"
-          ) as HTMLElement;
+          ) as HTMLButtonElement;
           if (nextButton) nextButton.focus();
+          break;
+        case "Enter":
+        case " ":
+          e.preventDefault();
+          activeElement.click();
           break;
       }
     };
 
+    // Tab key navigation
+    const handleTabKeyNav = (e: KeyboardEvent) => {
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      
+      const activeElement = document.activeElement as HTMLElement;
+      if (!activeElement || !activeElement.classList.contains("faq-tab-btn"))
+        return;
+        
+      const tabButtons = Array.from(document.querySelectorAll<HTMLButtonElement>(".faq-tab-btn"));
+      const currentIndex = tabButtons.indexOf(activeElement as HTMLButtonElement);
+      
+      let nextIndex: number;
+      
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        nextIndex = (currentIndex + 1) % tabButtons.length;
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        nextIndex = (currentIndex - 1 + tabButtons.length) % tabButtons.length;
+      } else {
+        return;
+      }
+      
+      tabButtons[nextIndex].focus();
+      tabButtons[nextIndex].click();
+    };
+
     document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("keydown", handleTabKeyNav);
+    
+    // Initialize first tab
+    if (tabButtons.length > 0) {
+      tabButtons[0].click();
+    }
+    
+    // Intersection Observer for animation on scroll
+    if ('IntersectionObserver' in window) {
+      const faqSection = document.querySelector('section[aria-labelledby="faq-heading"]');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('fade-in-section');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      if (faqSection) {
+        observer.observe(faqSection);
+      }
+    }
   });
 </script>
