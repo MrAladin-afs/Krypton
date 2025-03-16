@@ -222,6 +222,15 @@
   }
 }
 
+@keyframes krypton-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
 @keyframes cyber-scan {
   0% {
     background-position: 0% 0%;
@@ -252,14 +261,43 @@
   animation: neon-pulse 3s infinite;
 }
 
+/* Clean Krypton text effect */
+.krypton-text {
+  background: linear-gradient(to right, #5e5fee, #4f46e5, #6366f1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  position: relative;
+  text-shadow: 0 0 3px rgba(94, 95, 238, 0.3);
+}
+
+.krypton-text::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: translateX(-100%);
+  animation: krypton-shimmer 3s infinite;
+}
+
 .text-shimmer {
   background: linear-gradient(
     90deg,
-    var(--primary),
+    #5e5fee,
     #4f46e5,
     #6366f1,
     #4f46e5,
-    var(--primary)
+    #5e5fee
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -267,6 +305,9 @@
   background-clip: text;
   text-fill-color: transparent;
   animation: shimmer 6s linear infinite;
+  position: relative;
+  display: inline-block;
+  filter: drop-shadow(0 0 2px rgba(94, 95, 238, 0.3));
 }
 
 .futuristic-border {

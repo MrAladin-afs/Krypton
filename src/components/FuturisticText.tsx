@@ -119,31 +119,36 @@ export default function FuturisticText({
   };
 
   // Enhanced cursor style with glow
-  const cursorStyle1 = {
+  const cursorStyles = {
     color: cursorColor,
-    textShadow: `0 0 10px ${cursorColor}, 0 0 20px ${cursorColor}`,
-    animation: "neon-pulse 2s infinite",
+    textShadow: glowEffect
+      ? `0 0 10px ${cursorColor}, 0 0 20px ${cursorColor}`
+      : "none",
+    animation: glowEffect ? "neon-pulse 2s infinite" : "none",
+    display: cursorStyle === "none" ? "none" : "inline",
   };
 
   return (
-    <div className={`inline-flex flex-wrap items-center ${className}`}>
-      {baseText && (
+    <div className={`${className}`}>
+      <span className="flex items-center">
+        {baseText && (
+          <span className={showBaseTextOnMobile ? "" : "hidden sm:inline"}>
+            {baseText}&nbsp;
+          </span>
+        )}
         <span
-          className={`mr-2 ${showBaseTextOnMobile ? "" : "hidden sm:inline"}`}>
-          {baseText}
-        </span>
-      )}
-      <span
-        className={`${highlightClassName} relative ${getTextEffectClass()}`}
-        style={{ minWidth: "120px" }}>
-        {currentText}
-        <span
-          className={`absolute -right-[0.1em] top-0 transition-opacity ${
-            cursorVisible ? "opacity-100" : "opacity-0"
-          }`}
-          style={cursorStyle1}
-          aria-hidden="true">
-          {getCursorChar()}
+          className={`${highlightClassName} ${getTextEffectClass()} inline-flex items-center whitespace-nowrap`}>
+          {currentText}
+          {cursorStyle !== "none" && (
+            <span
+              className={`inline-block transition-opacity duration-300 ${
+                cursorVisible ? "opacity-100" : "opacity-0"
+              }`}
+              style={cursorStyles}
+              aria-hidden="true">
+              {getCursorChar()}
+            </span>
+          )}
         </span>
       </span>
     </div>

@@ -5,41 +5,44 @@ import FuturisticText from "./FuturisticText";
 ---
 
 <main
-  class="grid lg:grid-cols-12 place-items-center pt-16 pb-8 md:pt-12 md:pb-24 px-4">
+  class="grid lg:grid-cols-12 place-items-center pt-16 pb-8 md:pt-12 md:pb-24 px-4 custom-cursor-area">
   <!-- Content section - 5 columns on large screens -->
   <div class="content-wrapper lg:col-span-5 lg:order-1">
     <h1
-      class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter futuristic-text">
-      Welcome to <span class="text-gradient">Krypton</span> Scripts
+      class="text-5xl lg:text-6xl xl:text-7xl font-bold lg:tracking-tight xl:tracking-tighter">
+      Welcome to <span class="text-shimmer inline-block">Krypton</span> Scripts
     </h1>
     <div class="text-xl mt-6 text-slate-600 dark:text-slate-300 max-w-xl">
-      <FuturisticText
-        client:load
-        phrases={[
-          "Creativity",
-          "Optimization",
-          "Cheap Price",
-          "24/7 Support",
-          "Futuristic Design",
-          "Premium Quality",
-        ]}
-        baseText="Get all the -"
-        className="text-2xl font-medium"
-        highlightClassName="font-bold"
-        typingSpeed={70}
-        deletingSpeed={40}
-        delayBetweenPhrases={1800}
-        cursorStyle="bar"
-        shimmerEffect={true}
-        cursorColor="var(--primary)"
-        showBaseTextOnMobile={true}
-      />
+      <p class="flex items-center">
+        Get all the - <span class="inline-flex">
+          <FuturisticText
+            client:load
+            phrases={[
+              "Creativity",
+              "Optimization",
+              "Cheap Price",
+              "24/7 Support",
+              "Futuristic Design",
+              "Premium Quality",
+            ]}
+            className="text-2xl font-medium"
+            highlightClassName="font-bold"
+            typingSpeed={70}
+            deletingSpeed={40}
+            delayBetweenPhrases={1800}
+            cursorStyle="bar"
+            shimmerEffect={true}
+            cursorColor="var(--primary)"
+            showBaseTextOnMobile={false}
+          />
+        </span>
+      </p>
       <p class="mt-6 text-xl leading-relaxed">
         You will get - 24/7 support and everything you need for your project
         with our premium development solutions.
       </p>
     </div>
-    <div class="mt-8 flex flex-col sm:flex-row gap-4">
+    <div class="mt-8 flex flex-col sm:flex-row gap-4 w-full">
       <Link
         href="#"
         class="flex gap-2 items-center justify-center futuristic-button primary-button"
@@ -61,38 +64,30 @@ import FuturisticText from "./FuturisticText";
   </div>
 
   <!-- Video section - 7 columns on large screens -->
-  <div class="video-container lg:col-span-7 lg:order-2 w-full">
-    <div class="video-wrapper">
-      <!-- Enhanced YouTube embed with all controls hidden -->
+  <div
+    class="video-container lg:col-span-7 lg:order-2 w-full shadow-2xl shadow-[#5E5FEE]">
+    <div class="youtube-wrapper">
+      <!-- YouTube iframe with Partytown optimization -->
       <iframe
         width="100%"
         height="100%"
-        src="https://www.youtube-nocookie.com/embed/s8WHY3Gusx0?controls=0&showinfo=0&rel=0&modestbranding=1&autoplay=1&mute=1&loop=1&playlist=s8WHY3Gusx0&disablekb=1&iv_load_policy=3&fs=0&playsinline=1"
+        src="https://www.youtube-nocookie.com/embed/s8WHY3Gusx0?controls=0&rel=0&modestbranding=1&autoplay=1&mute=1&loop=1&playlist=s8WHY3Gusx0&disablekb=1&iv_load_policy=3&fs=0&playsinline=1"
         title="Formula One: Explained!"
         frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerpolicy="strict-origin-when-cross-origin"
         allowfullscreen
         loading="lazy"
-        class="video-frame"></iframe>
-
-      <!-- Video overlays to hide YouTube branding -->
-      <div class="video-overlay top"></div>
-      <div class="video-overlay bottom"></div>
-      <div class="video-overlay left"></div>
-      <div class="video-overlay right"></div>
-    </div>
-    <div class="outer-glow-container">
-      <div class="outer-glow top"></div>
-      <div class="outer-glow right"></div>
-      <div class="outer-glow bottom"></div>
-      <div class="outer-glow left"></div>
-      <div class="outer-glow-corner top-left"></div>
-      <div class="outer-glow-corner top-right"></div>
-      <div class="outer-glow-corner bottom-left"></div>
-      <div class="outer-glow-corner bottom-right"></div>
+        class="youtube-frame"
+        style="pointer-events: none;"
+        data-partytown></iframe>
     </div>
   </div>
+
+  <!-- Custom cursor elements - pre-rendered to avoid FOUC -->
+  <div id="custom-cursor-dot" class="custom-cursor-dot"></div>
+  <div id="custom-cursor-outline" class="custom-cursor-outline"></div>
+  <div id="custom-cursor-glow" class="custom-cursor-glow"></div>
 </main>
 
 <style>
@@ -100,6 +95,11 @@ import FuturisticText from "./FuturisticText";
   main {
     position: relative;
     overflow: hidden;
+  }
+
+  /* Only hide default cursor when custom cursor is active */
+  .cursor-active {
+    cursor: none;
   }
 
   main::before {
@@ -111,7 +111,7 @@ import FuturisticText from "./FuturisticText";
     height: 200%;
     background: radial-gradient(
       circle at center,
-      rgba(var(--primary), 0.08) 0%,
+      rgba(var(--primary), 0.05) 0%,
       transparent 70%
     );
     z-index: -1;
@@ -125,43 +125,18 @@ import FuturisticText from "./FuturisticText";
     max-width: 100%;
   }
 
-  .text-gradient {
-    background: linear-gradient(to right, var(--primary), #4f46e5, #6366f1);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
-    display: inline-block;
-    position: relative;
-  }
-
-  .text-gradient::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.4),
-      transparent
-    );
-    transform: translateX(-100%);
-    animation: shimmer 3s infinite;
-  }
-
-  /* Video container styling - significantly enhanced */
+  /* Video container styling - refined */
   .video-container {
     padding: 1rem;
     position: relative;
     z-index: 2;
     max-width: 800px;
     margin: 0 auto;
+    border-radius: 1.5rem;
   }
 
-  .video-wrapper {
+  /* YouTube wrapper with clean implementation to hide controls */
+  .youtube-wrapper {
     position: relative;
     width: 100%;
     padding-bottom: 56.25%; /* 16:9 aspect ratio */
@@ -170,327 +145,100 @@ import FuturisticText from "./FuturisticText";
     background: #000;
     margin: 1.5rem auto;
     z-index: 2;
-    box-shadow: none;
   }
 
-  .video-frame {
+  .youtube-frame {
     position: absolute;
-    top: 0;
+    top: -60px; /* Hide top YouTube branding */
     left: 0;
     width: 100%;
-    height: 100%;
-    border-radius: 1.25rem;
+    height: calc(100% + 120px); /* Compensate for top and bottom hiding */
+    border-radius: 1.5rem;
     z-index: 1;
-    filter: brightness(1.4) contrast(1.05);
+    filter: brightness(1.2) contrast(1.05);
   }
 
-  /* Video overlay to hide YouTube controls and branding */
-  .video-overlay {
-    position: absolute;
-    z-index: 3;
-    pointer-events: none; /* Allow clicks to pass through to the video */
-  }
-
-  .video-overlay.top {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px; /* Height to cover the YouTube title bar */
-    background: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.95) 0%,
-      rgba(0, 0, 0, 0.8) 50%,
-      transparent 100%
-    );
-  }
-
-  .video-overlay.bottom {
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 60px; /* Height to cover the YouTube controls */
-    background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.95) 0%,
-      rgba(0, 0, 0, 0.8) 50%,
-      transparent 100%
-    );
-  }
-
-  .video-overlay.left {
-    top: 0;
-    left: 0;
-    width: 30px;
-    height: 100%;
-    background: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.95) 0%,
-      transparent 100%
-    );
-  }
-
-  .video-overlay.right {
-    top: 0;
-    right: 0;
-    width: 30px;
-    height: 100%;
-    background: linear-gradient(
-      to left,
-      rgba(0, 0, 0, 0.95) 0%,
-      transparent 100%
-    );
-  }
-
-  /* Outer glow container */
-  .outer-glow-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
+  /* Custom cursor styling - enhanced */
+  .custom-cursor-dot,
+  .custom-cursor-outline,
+  .custom-cursor-glow {
     pointer-events: none;
-  }
-
-  /* Edge glow effect - now outside the video */
-  .outer-glow {
-    position: absolute;
-    background: linear-gradient(to right, var(--primary), #4f46e5, #6366f1);
-    opacity: 0.9;
-    filter: blur(25px);
-    animation: pulse-edge 3s infinite alternate;
-  }
-
-  .outer-glow.top {
+    position: fixed;
     top: 0;
-    left: 2rem;
-    right: 2rem;
-    height: 30px;
-    transform: translateY(-50%);
-  }
-
-  .outer-glow.right {
-    top: 2rem;
-    bottom: 2rem;
-    right: 0;
-    width: 30px;
-    transform: translateX(50%);
-  }
-
-  .outer-glow.bottom {
-    bottom: 0;
-    left: 2rem;
-    right: 2rem;
-    height: 30px;
-    transform: translateY(50%);
-  }
-
-  .outer-glow.left {
-    top: 2rem;
-    bottom: 2rem;
     left: 0;
-    width: 30px;
-    transform: translateX(-50%);
-  }
-
-  /* Corner glows */
-  .outer-glow-corner {
-    position: absolute;
-    width: 120px;
-    height: 120px;
+    transform: translate(-50%, -50%);
     border-radius: 50%;
-    filter: blur(40px);
-    opacity: 0.9;
-    z-index: 1;
-    animation: pulse 4s infinite alternate;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
   }
 
-  .outer-glow-corner.top-left {
-    top: 0;
-    left: 0;
-    transform: translate(-30%, -30%);
+  .custom-cursor-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(94, 95, 238, 0.8);
+    mix-blend-mode: difference;
+    transition: transform 0.1s ease-out;
+  }
+
+  .custom-cursor-outline {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(94, 95, 238, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(4px);
+    transition:
+      width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 0.4s ease-in-out,
+      border-color 0.4s ease-in-out,
+      transform 0.1s ease-out;
+  }
+
+  .custom-cursor-glow {
+    width: 150px;
+    height: 150px;
     background: radial-gradient(
-      circle,
-      rgba(var(--primary), 0.9) 0%,
+      circle at center,
+      rgba(94, 95, 238, 0.15) 0%,
       transparent 70%
     );
+    transform: translate(-50%, -50%) scale(0.8);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 9998;
   }
 
-  .outer-glow-corner.top-right {
-    top: 0;
-    right: 0;
-    transform: translate(30%, -30%);
-    background: radial-gradient(
-      circle,
-      rgba(79, 70, 229, 0.9) 0%,
-      transparent 70%
-    );
-  }
-
-  .outer-glow-corner.bottom-left {
-    bottom: 0;
-    left: 0;
-    transform: translate(-30%, 30%);
-    background: radial-gradient(
-      circle,
-      rgba(99, 102, 241, 0.9) 0%,
-      transparent 70%
-    );
-  }
-
-  .outer-glow-corner.bottom-right {
-    bottom: 0;
-    right: 0;
-    transform: translate(30%, 30%);
-    background: radial-gradient(
-      circle,
-      rgba(var(--primary), 0.9) 0%,
-      transparent 70%
-    );
-  }
-
-  @keyframes pulse-edge {
-    0% {
-      opacity: 0.7;
-      filter: blur(25px);
-    }
-    100% {
-      opacity: 1;
-      filter: blur(40px);
-    }
-  }
-
-  /* Glowing effects - enhanced */
-  .glow-effect {
-    position: absolute;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    filter: blur(60px);
-    opacity: 0.8;
-    z-index: 0;
-    animation: pulse 4s infinite alternate;
-  }
-
-  .glow-effect.top-left {
-    top: -70px;
-    left: -70px;
-    animation-delay: 0s;
-    background: radial-gradient(
-      circle,
-      rgba(var(--primary), 0.9) 0%,
-      transparent 70%
-    );
-  }
-
-  .glow-effect.top-right {
-    top: -70px;
-    right: -70px;
-    animation-delay: 0.5s;
-    background: radial-gradient(
-      circle,
-      rgba(79, 70, 229, 0.9) 0%,
-      transparent 70%
-    );
-  }
-
-  .glow-effect.bottom-left {
-    bottom: -70px;
-    left: -70px;
-    animation-delay: 1s;
-    background: radial-gradient(
-      circle,
-      rgba(99, 102, 241, 0.9) 0%,
-      transparent 70%
-    );
-  }
-
-  .glow-effect.bottom-right {
-    bottom: -70px;
-    right: -70px;
-    animation-delay: 1.5s;
-    background: radial-gradient(
-      circle,
-      rgba(var(--primary), 0.9) 0%,
-      transparent 70%
-    );
-  }
-
-  /* Corner accents - enhanced */
-  .corner-accent {
-    position: absolute;
+  /* Cursor states */
+  .custom-cursor-outline.hover {
     width: 80px;
     height: 80px;
-    z-index: 2;
-    opacity: 0.95;
+    background-color: rgba(94, 95, 238, 0.15);
+    border-color: rgba(255, 255, 255, 0.8);
+    transform: translate(-50%, -50%) scale(1.2);
   }
 
-  .corner-accent.top-left {
-    top: 0;
-    left: 0;
-    border-top: 5px solid rgba(var(--primary), 0.9);
-    border-left: 5px solid rgba(var(--primary), 0.9);
-    border-top-left-radius: 0.8rem;
-    box-shadow: -5px -5px 20px rgba(var(--primary), 0.7);
+  .custom-cursor-dot.hover {
+    transform: translate(-50%, -50%) scale(0.5);
+    background-color: #fff;
   }
 
-  .corner-accent.top-right {
-    top: 0;
-    right: 0;
-    border-top: 5px solid rgba(79, 70, 229, 0.9);
-    border-right: 5px solid rgba(79, 70, 229, 0.9);
-    border-top-right-radius: 0.8rem;
-    box-shadow: 5px -5px 20px rgba(79, 70, 229, 0.7);
+  .custom-cursor-glow.hover {
+    transform: translate(-50%, -50%) scale(1.4);
   }
 
-  .corner-accent.bottom-left {
-    bottom: 0;
-    left: 0;
-    border-bottom: 5px solid rgba(99, 102, 241, 0.9);
-    border-left: 5px solid rgba(99, 102, 241, 0.9);
-    border-bottom-left-radius: 0.8rem;
-    box-shadow: -5px 5px 20px rgba(99, 102, 241, 0.7);
-  }
-
-  .corner-accent.bottom-right {
-    bottom: 0;
-    right: 0;
-    border-bottom: 5px solid rgba(var(--primary), 0.9);
-    border-right: 5px solid rgba(var(--primary), 0.9);
-    border-bottom-right-radius: 0.8rem;
-    box-shadow: 5px 5px 20px rgba(var(--primary), 0.7);
-  }
-
-  /* Scan line effect - enhanced */
-  .scan-line {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 5px;
-    background: linear-gradient(
-      to right,
-      transparent,
-      rgba(var(--primary), 0.9),
-      rgba(79, 70, 229, 0.9),
-      rgba(var(--primary), 0.9),
-      transparent
-    );
-    z-index: 2;
-    animation: scan 2.5s linear infinite;
-    box-shadow: 0 0 25px rgba(var(--primary), 0.9);
-  }
-
-  @keyframes scan {
+  /* Magnetic effect animation */
+  @keyframes magnetic-pulse {
     0% {
-      top: 0;
+      transform: translate(-50%, -50%) scale(1);
       opacity: 0.8;
     }
     50% {
+      transform: translate(-50%, -50%) scale(1.1);
       opacity: 1;
     }
     100% {
-      top: 100%;
+      transform: translate(-50%, -50%) scale(1);
       opacity: 0.8;
     }
   }
@@ -561,18 +309,9 @@ import FuturisticText from "./FuturisticText";
     }
   }
 
-  @keyframes shimmer {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(100%);
-    }
-  }
-
   /* Responsive adjustments */
   @media (max-width: 1023px) {
-    .video-wrapper {
+    .youtube-wrapper {
       transform: none;
       margin: 0 auto 2rem auto;
       max-width: 95%;
@@ -588,6 +327,12 @@ import FuturisticText from "./FuturisticText";
       flex-direction: column;
       align-items: center;
       text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    /* Improve spacing on tablets */
+    main {
+      gap: 2rem;
     }
   }
 
@@ -596,8 +341,231 @@ import FuturisticText from "./FuturisticText";
       font-size: 2.5rem;
     }
 
-    .video-wrapper {
+    .youtube-wrapper {
       max-width: 100%;
+      margin: 1rem auto;
+    }
+
+    /* Improve video container on mobile */
+    .video-container {
+      padding: 0.5rem;
+      border-radius: 1rem;
+      max-width: 100%;
+    }
+
+    .youtube-frame {
+      border-radius: 1rem;
+    }
+
+    /* Better spacing on mobile */
+    main {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      gap: 1rem;
+    }
+
+    /* Ensure buttons are properly sized on mobile */
+    .futuristic-button {
+      padding: 0.6rem 1.2rem;
+      width: 100%;
+      justify-content: center;
     }
   }
 </style>
+
+<script>
+  // Immediately set up cursor elements to avoid FOUC
+  document.addEventListener("DOMContentLoaded", initCursor);
+
+  // Initialize cursor immediately to avoid FOUC
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initCursor);
+  } else {
+    initCursor();
+  }
+
+  function initCursor() {
+    // First check if it's a touch device and disable cursor if it is
+    const isTouchDevice =
+      "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+    const heroSection = document.querySelector(".custom-cursor-area");
+    if (!heroSection) return;
+
+    const cursorDot = document.getElementById(
+      "custom-cursor-dot"
+    ) as HTMLElement;
+    const cursorOutline = document.getElementById(
+      "custom-cursor-outline"
+    ) as HTMLElement;
+    const cursorGlow = document.getElementById(
+      "custom-cursor-glow"
+    ) as HTMLElement;
+
+    if (!cursorDot || !cursorOutline || !cursorGlow) return;
+
+    // Immediately hide cursor elements on touch devices
+    if (isTouchDevice) {
+      heroSection.classList.remove("cursor-active");
+      cursorDot.style.display = "none";
+      cursorOutline.style.display = "none";
+      cursorGlow.style.display = "none";
+      return; // Exit early for touch devices
+    }
+
+    // Continue with cursor setup for non-touch devices
+    // Set initial positions to avoid jumps
+    const initialX = window.innerWidth / 2;
+    const initialY = window.innerHeight / 2;
+
+    cursorDot.style.transform = `translate(${initialX}px, ${initialY}px)`;
+    cursorOutline.style.transform = `translate(${initialX}px, ${initialY}px)`;
+    cursorGlow.style.transform = `translate(${initialX}px, ${initialY}px)`;
+
+    // Add cursor-active class to main element to hide default cursor
+    heroSection.classList.add("cursor-active");
+
+    // Only apply cursor effect when mouse is within the hero section
+    heroSection.addEventListener("mouseenter", () => {
+      cursorDot.style.opacity = "1";
+      cursorOutline.style.opacity = "1";
+      cursorGlow.style.opacity = "1";
+    });
+
+    heroSection.addEventListener("mouseleave", () => {
+      cursorDot.style.opacity = "0";
+      cursorOutline.style.opacity = "0";
+      cursorGlow.style.opacity = "0";
+    });
+
+    // Track mouse position with optimized animation
+    let mouseX = initialX;
+    let mouseY = initialY;
+    let outlineX = initialX;
+    let outlineY = initialY;
+    let glowX = initialX;
+    let glowY = initialY;
+
+    // Use requestAnimationFrame for smoother animation
+    let animationFrameId: number | null = null;
+
+    // Throttle mousemove event for better performance
+    let lastMove = 0;
+    const throttleTime = 10; // ms between updates
+
+    // Update mouse position with throttling
+    heroSection.addEventListener("mousemove", (e: MouseEvent) => {
+      const now = performance.now();
+      if (now - lastMove < throttleTime) return;
+      lastMove = now;
+
+      const rect = heroSection.getBoundingClientRect();
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+
+      // Check if mouse is within hero section bounds
+      if (
+        mouseX >= rect.left &&
+        mouseX <= rect.right &&
+        mouseY >= rect.top &&
+        mouseY <= rect.bottom
+      ) {
+        // Move dot immediately for responsive feel
+        cursorDot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+
+        // Start animation if not already running
+        if (!animationFrameId) {
+          animateCursor();
+        }
+      }
+    });
+
+    // Optimized smooth animation for cursor outline and glow
+    function animateCursor() {
+      // Calculate smooth movement with easing
+      const outlineEasing = 0.2;
+      const glowEasing = 0.08;
+
+      outlineX = outlineX + (mouseX - outlineX) * outlineEasing;
+      outlineY = outlineY + (mouseY - outlineY) * outlineEasing;
+
+      glowX = glowX + (mouseX - glowX) * glowEasing;
+      glowY = glowY + (mouseY - glowY) * glowEasing;
+
+      cursorOutline.style.transform = `translate(${outlineX}px, ${outlineY}px)`;
+      cursorGlow.style.transform = `translate(${glowX}px, ${glowY}px)`;
+
+      // Only continue animation if there's significant movement
+      const isMoving =
+        Math.abs(mouseX - outlineX) > 0.1 ||
+        Math.abs(mouseY - outlineY) > 0.1 ||
+        Math.abs(mouseX - glowX) > 0.1 ||
+        Math.abs(mouseY - glowY) > 0.1;
+
+      if (isMoving) {
+        animationFrameId = requestAnimationFrame(animateCursor);
+      } else {
+        animationFrameId = null;
+      }
+    }
+
+    // Add magnetic effect for interactive elements within hero section
+    const interactiveElements = heroSection.querySelectorAll(
+      "a, button, .youtube-wrapper, .futuristic-button"
+    );
+
+    interactiveElements.forEach((el) => {
+      el.addEventListener("mouseenter", () => {
+        // Add hover classes for visual effect
+        cursorOutline.classList.add("hover");
+        cursorDot.classList.add("hover");
+        cursorGlow.classList.add("hover");
+
+        // Apply magnetic effect
+        el.addEventListener("mousemove", magneticEffect);
+      });
+
+      el.addEventListener("mouseleave", () => {
+        cursorOutline.classList.remove("hover");
+        cursorDot.classList.remove("hover");
+        cursorGlow.classList.remove("hover");
+
+        // Remove magnetic effect
+        el.removeEventListener("mousemove", magneticEffect);
+
+        // Reset element transform
+        (el as HTMLElement).style.transform = "";
+      });
+    });
+
+    // Optimized magnetic pull effect
+    function magneticEffect(e: MouseEvent) {
+      const el = e.currentTarget as HTMLElement;
+      const rect = el.getBoundingClientRect();
+
+      // Calculate center of element
+      const elCenterX = rect.left + rect.width / 2;
+      const elCenterY = rect.top + rect.height / 2;
+
+      // Calculate distance from mouse to center
+      const deltaX = mouseX - elCenterX;
+      const deltaY = mouseY - elCenterY;
+
+      // Calculate magnetic pull (stronger when closer to center)
+      const magneticPullX = deltaX * 0.3;
+      const magneticPullY = deltaY * 0.3;
+
+      // Apply transform to element for subtle movement
+      el.style.transform = `translate(${magneticPullX}px, ${magneticPullY}px)`;
+
+      // Move cursor more aggressively toward element center
+      outlineX = elCenterX + deltaX * 0.4;
+      outlineY = elCenterY + deltaY * 0.4;
+
+      // Ensure animation is running
+      if (!animationFrameId) {
+        animateCursor();
+      }
+    }
+  }
+</script>
