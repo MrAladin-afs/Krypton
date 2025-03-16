@@ -163,14 +163,14 @@
 /* Enhanced Futuristic styling for Krypton Scripts */
 @keyframes glow {
   0% {
-    box-shadow: 0 0 5px rgba(var(--primary), 0.5);
+    box-shadow: 0 0 5px rgba(var(--color-primary), 0.5);
   }
   50% {
-    box-shadow: 0 0 20px rgba(var(--primary), 0.8),
-      0 0 30px rgba(var(--primary), 0.4);
+    box-shadow: 0 0 20px rgba(var(--color-primary), 0.8),
+      0 0 30px rgba(var(--color-primary), 0.4);
   }
   100% {
-    box-shadow: 0 0 5px rgba(var(--primary), 0.5);
+    box-shadow: 0 0 5px rgba(var(--color-primary), 0.5);
   }
 }
 
@@ -209,16 +209,16 @@
 
 @keyframes neon-pulse {
   0% {
-    text-shadow: 0 0 5px rgba(var(--primary), 0.5),
-      0 0 10px rgba(var(--primary), 0.3);
+    text-shadow: 0 0 5px rgba(99, 102, 241, 0.5),
+      0 0 10px rgba(99, 102, 241, 0.3);
   }
   50% {
-    text-shadow: 0 0 20px rgba(var(--primary), 0.8),
-      0 0 30px rgba(var(--primary), 0.6), 0 0 40px rgba(var(--primary), 0.4);
+    text-shadow: 0 0 20px rgba(99, 102, 241, 0.8),
+      0 0 30px rgba(99, 102, 241, 0.6), 0 0 40px rgba(99, 102, 241, 0.4);
   }
   100% {
-    text-shadow: 0 0 5px rgba(var(--primary), 0.5),
-      0 0 10px rgba(var(--primary), 0.3);
+    text-shadow: 0 0 5px rgba(99, 102, 241, 0.5),
+      0 0 10px rgba(99, 102, 241, 0.3);
   }
 }
 
@@ -253,7 +253,7 @@
 }
 
 .futuristic-text {
-  background: linear-gradient(to right, var(--primary), #4f46e5);
+  background: linear-gradient(to right, var(--color-primary), #4f46e5);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -311,8 +311,8 @@
 }
 
 .futuristic-border {
-  border: 1px solid rgba(var(--primary), 0.3);
-  box-shadow: 0 0 10px rgba(var(--primary), 0.2);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.2);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -344,16 +344,16 @@
 }
 
 .futuristic-border:hover {
-  border-color: rgba(var(--primary), 0.8);
-  box-shadow: 0 0 20px rgba(var(--primary), 0.5);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
 }
 
 .futuristic-card {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
-  border-radius: 1rem;
-  border: 1px solid rgba(var(--primary), 0.1);
-  box-shadow: 0 0 20px rgba(var(--primary), 0.1);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.1);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -368,7 +368,7 @@
   height: 200%;
   background: radial-gradient(
     circle at center,
-    rgba(var(--primary), 0.05) 0%,
+    rgba(99, 102, 241, 0.05) 0%,
     transparent 70%
   );
   transform: rotate(30deg);
@@ -376,16 +376,16 @@
 }
 
 .futuristic-card:hover {
-  box-shadow: 0 0 30px rgba(var(--primary), 0.3);
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
   transform: translateY(-5px);
 }
 
 .cyber-grid {
   background-image: linear-gradient(
-      rgba(var(--primary), 0.1) 1px,
+      rgba(99, 102, 241, 0.1) 1px,
       transparent 1px
     ),
-    linear-gradient(90deg, rgba(var(--primary), 0.1) 1px, transparent 1px);
+    linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
   background-size: 20px 20px;
   background-position: center center;
   animation: cyber-scan 15s linear infinite;
@@ -403,10 +403,10 @@
   padding: 3px;
   background: linear-gradient(
     45deg,
-    var(--primary),
+    var(--color-primary),
     #4f46e5,
     #6366f1,
-    var(--primary)
+    var(--color-primary)
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -427,15 +427,15 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, var(--primary), #4f46e5);
+  background: linear-gradient(to bottom, var(--color-primary), #4f46e5);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #4f46e5, var(--primary));
+  background: linear-gradient(to bottom, #4f46e5, var(--color-primary));
 }
 
 ::selection {
-  background: rgba(192, 60, 55, 0.3);
+  background: rgba(99, 102, 241, 0.3);
   color: inherit;
 }

@@ -6,39 +6,209 @@ import Layout from "@/layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
 ---
 
-<Layout title="Contact">
-  <Container>
-    <Sectionhead>
-      <Fragment slot="title">Contact</Fragment>
-      <Fragment slot="desc">We are a here to help.</Fragment>
-    </Sectionhead>
+<Layout title="Contact Krypton | Get in Touch">
+  <div class="relative overflow-hidden">
+    <!-- Background elements -->
+    <div class="absolute inset-0 cyber-grid opacity-5 z-0"></div>
+    <div
+      class="absolute top-0 left-1/4 w-64 h-64 bg-indigo-500/10 rounded-full filter blur-3xl"
+      aria-hidden="true">
+    </div>
+    <div
+      class="absolute bottom-0 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full filter blur-3xl"
+      aria-hidden="true">
+    </div>
 
-    <div class="grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16">
-      <div>
-        <h2 class="font-medium text-2xl text-gray-800">Contact Astroship</h2>
-        <p class="text-lg leading-relaxed text-slate-500 mt-3">
-          Have something to say? We are here to help. Fill up the form or send
-          email or call phone.
-        </p>
-        <div class="mt-5">
-          <div class="flex items-center mt-2 space-x-2 text-gray-600">
-            <Icon class="text-gray-400 w-4 h-4" name="uil:map-marker" />
-            <span>1734 Sanfransico, CA 93063</span>
-          </div><div class="flex items-center mt-2 space-x-2 text-gray-600">
-            <Icon class="text-gray-400 w-4 h-4" name="uil:envelope" /><a
-              href="mailto:hello@astroshipstarter.com"
-              >hello@astroshipstarter.com</a
-            >
-          </div><div class="flex items-center mt-2 space-x-2 text-gray-600">
-            <Icon class="text-gray-400 w-4 h-4" name="uil:phone" /><a
-              href="tel:+1 (987) 4587 899">+1 (987) 4587 899</a
-            >
+    <Container>
+      <Sectionhead>
+        <Fragment slot="title">
+          <span class="text-shimmer">Contact Krypton</span>
+        </Fragment>
+        <Fragment slot="desc">
+          We're here to help you unlock the full potential of your digital
+          infrastructure.
+        </Fragment>
+      </Sectionhead>
+
+      <div
+        class="grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16 relative z-10">
+        <!-- Contact Information -->
+        <div
+          class="backdrop-blur-lg bg-white/70 dark:bg-black/10 rounded-2xl p-1 shadow-xl h-fit">
+          <div class="bg-white/80 dark:bg-black/40 rounded-2xl p-6 md:p-8">
+            <h2
+              class="font-medium text-2xl text-gray-800 dark:text-white mb-6 krypton-text">
+              Connect With Us
+            </h2>
+
+            <div class="space-y-6">
+              <p
+                class="text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+                Have questions about Krypton? Our team is ready to assist you
+                with any inquiries, technical support, or partnership
+                opportunities.
+              </p>
+
+              <div class="space-y-4 mt-8">
+                <!-- Location -->
+                <div class="flex items-start space-x-4 group">
+                  <div
+                    class="bg-gray-100/80 dark:bg-black/30 p-3 rounded-lg text-indigo-600 dark:text-indigo-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-300 transition-colors duration-300">
+                    <Icon class="w-6 h-6" name="uil:map-marker" />
+                  </div>
+                  <div>
+                    <h3 class="text-gray-800 dark:text-white font-medium">
+                      Headquarters
+                    </h3>
+                    <p class="text-gray-600 dark:text-gray-400 mt-1">
+                      1734 Sanfransico, CA 93063
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Email -->
+                <div class="flex items-start space-x-4 group">
+                  <div
+                    class="bg-gray-100/80 dark:bg-black/30 p-3 rounded-lg text-indigo-600 dark:text-indigo-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-300 transition-colors duration-300">
+                    <Icon class="w-6 h-6" name="uil:envelope" />
+                  </div>
+                  <div>
+                    <h3 class="text-gray-800 dark:text-white font-medium">
+                      Email
+                    </h3>
+                    <a
+                      href="mailto:support@krypton.tech"
+                      class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 mt-1 block">
+                      support@krypton.tech
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Phone -->
+                <div class="flex items-start space-x-4 group">
+                  <div
+                    class="bg-gray-100/80 dark:bg-black/30 p-3 rounded-lg text-indigo-600 dark:text-indigo-400 group-hover:text-indigo-500 dark:group-hover:text-indigo-300 transition-colors duration-300">
+                    <Icon class="w-6 h-6" name="uil:phone" />
+                  </div>
+                  <div>
+                    <h3 class="text-gray-800 dark:text-white font-medium">
+                      Phone
+                    </h3>
+                    <a
+                      href="tel:+1 (987) 4587 899"
+                      class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors duration-300 mt-1 block">
+                      +1 (987) 4587 899
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Social Media Links -->
+              <div
+                class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800">
+                <h3 class="text-gray-800 dark:text-white font-medium mb-4">
+                  Connect With Us
+                </h3>
+                <div class="flex space-x-4">
+                  <a
+                    href="#"
+                    class="bg-gray-100/80 dark:bg-black/30 p-3 rounded-lg text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 hover:bg-gray-200/80 dark:hover:bg-black/40 transition-all duration-300">
+                    <Icon class="w-5 h-5" name="uil:twitter" />
+                  </a>
+                  <a
+                    href="#"
+                    class="bg-gray-100/80 dark:bg-black/30 p-3 rounded-lg text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 hover:bg-gray-200/80 dark:hover:bg-black/40 transition-all duration-300">
+                    <Icon class="w-5 h-5" name="uil:linkedin" />
+                  </a>
+                  <a
+                    href="#"
+                    class="bg-gray-100/80 dark:bg-black/30 p-3 rounded-lg text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 hover:bg-gray-200/80 dark:hover:bg-black/40 transition-all duration-300">
+                    <Icon class="w-5 h-5" name="uil:github" />
+                  </a>
+                  <a
+                    href="#"
+                    class="bg-gray-100/80 dark:bg-black/30 p-3 rounded-lg text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 hover:bg-gray-200/80 dark:hover:bg-black/40 transition-all duration-300">
+                    <Icon class="w-5 h-5" name="uil:discord" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div>
+          <Contactform />
+        </div>
+      </div>
+
+      <!-- Map Section -->
+      <div class="max-w-4xl mx-auto mt-16 relative z-10">
+        <div
+          class="backdrop-blur-lg bg-white/70 dark:bg-black/10 rounded-2xl p-1 shadow-xl">
+          <div class="bg-white/80 dark:bg-black/40 rounded-2xl p-6 md:p-8">
+            <h2
+              class="font-medium text-2xl text-gray-800 dark:text-white mb-6 krypton-text">
+              Visit Our Office
+            </h2>
+            <div class="aspect-video rounded-xl overflow-hidden">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.5762504558472!2d-122.41941638468864!3d37.77492977975903!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085809c6c8f4459%3A0xb10ed6d9b5050fa5!2sTwitter!5e0!3m2!1sen!2sus!4v1653584248226!5m2!1sen!2sus"
+                style="border:0; filter: grayscale(1) contrast(1.2) opacity(0.9);"
+                width="100%"
+                height="100%"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
           </div>
         </div>
       </div>
-      <div>
-        <Contactform />
-      </div>
-    </div>
-  </Container>
+    </Container>
+  </div>
 </Layout>
+
+<style>
+  .cyber-grid {
+    background-image: linear-gradient(
+        to right,
+        rgba(99, 102, 241, 0.05) 1px,
+        transparent 1px
+      ),
+      linear-gradient(to bottom, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  .text-shimmer {
+    background: linear-gradient(
+      to right,
+      #4f46e5 20%,
+      #a855f7 30%,
+      #ec4899 70%,
+      #4f46e5 80%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+    background-size: 200% auto;
+    animation: textShine 5s ease-in-out infinite alternate;
+  }
+
+  @keyframes textShine {
+    0% {
+      background-position: 0% center;
+    }
+    100% {
+      background-position: 100% center;
+    }
+  }
+
+  /* Respect reduced motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .text-shimmer {
+      animation: none;
+      background-size: 100% auto;
+    }
+  }
+</style>

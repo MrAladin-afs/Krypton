@@ -3,6 +3,7 @@ import Container from "@/components/container.astro";
 import Dropdown from "./dropdown.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 import { ModeToggle } from "@/components/ModeToggle";
+import { Image } from "astro:assets";
 
 const menuitems = [
   {
@@ -43,11 +44,14 @@ const menuitems = [
   <header class="flex flex-col lg:flex-row justify-between items-center my-5">
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between">
-        <a href="/" class="text-lg"
-          ><span class="font-bold text-primary">Astro</span><span
-            class="text-primary"
-          >ship</span
-          >
+        <a href="/" class="flex items-center" aria-label="Krypton Scripts">
+          <img
+            src="/images/krypton-logo-optimized.avif"
+            alt="Krypton Logo"
+            width="80"
+            height="80"
+            class="w-20 h-20 object-contain"
+          />
         </a>
         <div class="block lg:hidden items-center justify-center space-x-3">
           <ModeToggle client:load />
@@ -85,11 +89,9 @@ const menuitems = [
             ))
           }
         </ul>
-        
       </MenuItems>
     </Astronav>
     <div>
-   
       <div class="hidden lg:flex items-center gap-4">
         <ModeToggle client:load />
       </div>
