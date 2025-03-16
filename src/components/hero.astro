@@ -13,30 +13,29 @@ import FuturisticText from "./FuturisticText";
       Welcome to <span class="text-shimmer inline-block">Krypton</span> Scripts
     </h1>
     <div class="text-xl mt-6 text-slate-600 dark:text-slate-300 max-w-xl">
-      <p class="flex items-center">
-        Get all the - <span class="inline-flex">
-          <FuturisticText
-            client:load
-            phrases={[
-              "Creativity",
-              "Optimization",
-              "Cheap Price",
-              "24/7 Support",
-              "Futuristic Design",
-              "Premium Quality",
-            ]}
-            className="text-2xl font-medium"
-            highlightClassName="font-bold"
-            typingSpeed={70}
-            deletingSpeed={40}
-            delayBetweenPhrases={1800}
-            cursorStyle="bar"
-            shimmerEffect={true}
-            cursorColor="var(--primary)"
-            showBaseTextOnMobile={false}
-          />
-        </span>
-      </p>
+      <div class="flex items-center">
+        <span>Get all the -</span>
+        <FuturisticText
+          client:load
+          phrases={[
+            "Creativity",
+            "Optimization",
+            "Cheap Price",
+            "24/7 Support",
+            "Futuristic Design",
+            "Premium Quality",
+          ]}
+          className="text-2xl font-medium ml-1"
+          highlightClassName="font-bold"
+          typingSpeed={70}
+          deletingSpeed={40}
+          delayBetweenPhrases={1800}
+          cursorStyle="bar"
+          shimmerEffect={true}
+          cursorColor="var(--primary)"
+          showBaseTextOnMobile={false}
+        />
+      </div>
       <p class="mt-6 text-xl leading-relaxed">
         You will get - 24/7 support and everything you need for your project
         with our premium development solutions.

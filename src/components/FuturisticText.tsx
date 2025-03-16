@@ -129,28 +129,26 @@ export default function FuturisticText({
   };
 
   return (
-    <div className={`${className}`}>
-      <span className="flex items-center">
-        {baseText && (
-          <span className={showBaseTextOnMobile ? "" : "hidden sm:inline"}>
-            {baseText}&nbsp;
+    <span className={`${className} inline-flex items-center`}>
+      {baseText && (
+        <span className={showBaseTextOnMobile ? "" : "hidden sm:inline"}>
+          {baseText}&nbsp;
+        </span>
+      )}
+      <span
+        className={`${highlightClassName} ${getTextEffectClass()} whitespace-nowrap`}>
+        {currentText}
+        {cursorStyle !== "none" && (
+          <span
+            className={`inline-block transition-opacity duration-300 ${
+              cursorVisible ? "opacity-100" : "opacity-0"
+            }`}
+            style={cursorStyles}
+            aria-hidden="true">
+            {getCursorChar()}
           </span>
         )}
-        <span
-          className={`${highlightClassName} ${getTextEffectClass()} inline-flex items-center whitespace-nowrap`}>
-          {currentText}
-          {cursorStyle !== "none" && (
-            <span
-              className={`inline-block transition-opacity duration-300 ${
-                cursorVisible ? "opacity-100" : "opacity-0"
-              }`}
-              style={cursorStyles}
-              aria-hidden="true">
-              {getCursorChar()}
-            </span>
-          )}
-        </span>
       </span>
-    </div>
+    </span>
   );
 }
