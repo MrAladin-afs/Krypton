@@ -13,13 +13,17 @@ interface Feature {
   textSize: "small" | "large";
 }
 
+// Adjusted features to match the pattern:
+// 1. More text(left) smaller image(right)
+// 2. Less text(right) larger image(left)
+// 3. More text(left) smaller image(right)
 const features: Feature[] = [
   {
     title: "Immersive Gaming",
     description:
-      "Step into a world where every detail matters with stunning visuals, realistic physics, and responsive controls.",
+      "Step into a world where every detail matters with stunning visuals, realistic physics, and responsive controls. Our platform delivers an unparalleled gaming experience with cutting-edge technology and thoughtful design.",
     imageUrl:
-      "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop",
     imageAlt: "Gaming setup with neon lights",
     imagePosition: "right",
     accentColor: "from-blue-500 via-indigo-500 to-purple-600",
@@ -29,9 +33,9 @@ const features: Feature[] = [
   {
     title: "Custom Roleplay",
     description:
-      "Create unique characters with extensive customization options for appearances, clothing, and backstories.",
+      "Create unique characters with extensive customization options.",
     imageUrl:
-      "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=800&auto=format&fit=crop",
     imageAlt: "Person with gaming headset in front of computer",
     imagePosition: "left",
     accentColor: "from-emerald-500 via-teal-500 to-cyan-500",
@@ -41,9 +45,9 @@ const features: Feature[] = [
   {
     title: "Thriving Community",
     description:
-      "Join a world where actions have consequences and relationships matter in our evolving player-driven ecosystem.",
+      "Join a world where actions have consequences and relationships matter in our evolving player-driven ecosystem. Connect with like-minded players, form alliances, and leave your mark on our persistent world with meaningful interactions and collaborative gameplay.",
     imageUrl:
-      "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?q=80&w=800&auto=format&fit=crop",
     imageAlt: "Group of friends playing games together",
     imagePosition: "right",
     accentColor: "from-amber-500 via-orange-500 to-red-500",
@@ -53,180 +57,171 @@ const features: Feature[] = [
 ];
 ---
 
-<section id="features1" class="relative py-3 overflow-hidden bg-background">
-  <!-- Background elements -->
+<section
+  id="features1"
+  class="relative py-6 sm:py-8 overflow-hidden bg-background will-change-transform"
+  aria-labelledby="features-heading">
+  <!-- Background elements with improved contrast -->
   <div
-    class="absolute inset-0 bg-grid-pattern opacity-[0.02] pointer-events-none">
+    class="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none"
+    aria-hidden="true">
   </div>
 
-  <div class="container mx-auto px-2 relative z-10">
+  <div class="container mx-auto px-3 sm:px-4 relative z-10">
     <div
-      class="text-center mb-3 sm:mb-4"
+      class="text-center mb-4 sm:mb-6"
       data-aos="fade-up"
-      data-aos-duration="600">
-      <h2 class="text-xl sm:text-3xl font-bold mb-1 sm:mb-2 text-shimmer">
-        Key Features
+      data-aos-duration="400">
+      <h2
+        id="features-heading"
+        class="text-xl sm:text-2xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-indigo-500 to-blue-500">
+        Experience the Difference
       </h2>
+      <p class="text-xs sm:text-sm text-foreground/80 max-w-xl mx-auto">
+        Our platform offers unique features designed to elevate your gaming
+        experience
+      </p>
     </div>
 
     <div class="space-y-4 sm:space-y-6">
       {
         features.map((feature, index) => (
           <div
-            class="flex flex-col items-center"
+            class="group relative"
             data-aos="fade-up"
-            data-aos-duration="600"
-            data-aos-delay={index * 20}>
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-2 lg:gap-3 items-center max-w-5xl mx-auto">
-              {/* Image Column */}
-              <div
-                class={cn(
-                  "relative overflow-hidden rounded-lg shadow-md",
-                  feature.imagePosition === "right"
-                    ? "lg:order-2"
-                    : "lg:order-1",
-                  feature.imageSize === "small"
-                    ? "lg:col-span-5"
-                    : "lg:col-span-7",
-                  "aspect-[16/9] lg:aspect-auto"
-                )}>
-                {/* Gradient overlay */}
+            data-aos-duration="300"
+            data-aos-delay={index * 30}>
+            {/* Card container with hover effects */}
+            <div class="relative rounded-lg overflow-hidden transition-all duration-200 hover:shadow-lg bg-background/50 backdrop-blur-sm border border-white/5 hover:border-white/10">
+              <div class="grid grid-cols-1 md:grid-cols-12 gap-0 items-stretch">
+                {/* Image Column with aspect ratio preservation */}
                 <div
                   class={cn(
-                    "absolute inset-0 opacity-30 mix-blend-overlay z-10",
-                    `bg-gradient-to-br ${feature.accentColor}`
-                  )}
-                />
-
-                {/* Image */}
-                <img
-                  src={feature.imageUrl}
-                  alt={feature.imageAlt}
-                  class="w-full h-full object-cover"
-                  loading="lazy"
-                  width={feature.imageSize === "small" ? "400" : "600"}
-                  height={feature.imageSize === "small" ? "300" : "338"}
-                />
-
-                {/* Frame accent */}
-                <div class="absolute inset-0 border border-white/10 rounded-lg pointer-events-none z-20" />
-
-                {/* Floating badge - smaller on mobile */}
-                <div
-                  class={cn(
-                    "absolute z-20 backdrop-blur-md bg-background/60 border border-white/10 rounded-full px-1.5 py-0.5 shadow-sm text-xs",
+                    "relative overflow-hidden",
                     feature.imagePosition === "right"
-                      ? "top-1 left-1"
-                      : "top-1 right-1"
+                      ? "md:order-2"
+                      : "md:order-1",
+                    feature.imagePosition === "right"
+                      ? "md:col-span-4" // Smaller image on right
+                      : "md:col-span-7", // Larger image on left
+                    "aspect-[16/9] md:aspect-auto h-full"
                   )}>
-                  <span
+                  {/* Gradient overlay with improved contrast */}
+                  <div
                     class={cn(
-                      "text-xs font-medium bg-clip-text text-transparent bg-gradient-to-r",
-                      feature.accentColor
+                      "absolute inset-0 opacity-40 mix-blend-overlay z-10",
+                      `bg-gradient-to-br ${feature.accentColor}`
+                    )}
+                    aria-hidden="true"
+                  />
+
+                  {/* Image with proper loading attributes and reduced quality for better performance */}
+                  <img
+                    src={feature.imageUrl}
+                    alt={feature.imageAlt}
+                    class="w-full h-full object-cover will-change-transform"
+                    loading="lazy"
+                    width={feature.imagePosition === "right" ? "300" : "500"}
+                    height={feature.imagePosition === "right" ? "200" : "300"}
+                    decoding="async"
+                    fetchpriority="low"
+                  />
+
+                  {/* Feature badge with improved contrast */}
+                  <div
+                    class={cn(
+                      "absolute z-20 backdrop-blur-md bg-background/80 border border-white/10 rounded-full px-2 py-0.5 shadow-lg",
+                      feature.imagePosition === "right"
+                        ? "top-2 left-2"
+                        : "top-2 right-2"
                     )}>
-                    {index === 0
-                      ? "Premium"
-                      : index === 1
-                        ? "Exclusive"
-                        : "Community"}
-                  </span>
+                    <span
+                      class={cn(
+                        "text-xs font-semibold bg-clip-text text-transparent bg-gradient-to-r",
+                        feature.accentColor
+                      )}>
+                      {index === 0
+                        ? "Premium"
+                        : index === 1
+                          ? "Exclusive"
+                          : "Community"}
+                    </span>
+                  </div>
                 </div>
-              </div>
 
-              {/* Content Column */}
-              <div
-                class={cn(
-                  "flex flex-col space-y-1 mt-2 lg:mt-0",
-                  feature.imagePosition === "right"
-                    ? "lg:order-1 lg:text-right"
-                    : "lg:order-2 lg:text-left",
-                  feature.textSize === "small"
-                    ? "lg:col-span-5"
-                    : "lg:col-span-7"
-                )}>
-                <h3
-                  class={cn(
-                    "text-lg sm:text-xl font-bold leading-tight",
-                    feature.imagePosition === "right" ? "lg:pr-1" : "lg:pl-1"
-                  )}>
-                  <span
-                    class={cn(
-                      "bg-clip-text text-transparent bg-gradient-to-r",
-                      feature.accentColor
-                    )}>
-                    {feature.title}
-                  </span>
-                </h3>
-
-                <p
-                  class={cn(
-                    "text-xs sm:text-sm text-foreground/80 leading-relaxed",
-                    feature.imagePosition === "right" ? "lg:pr-1" : "lg:pl-1"
-                  )}>
-                  {feature.description}
-                </p>
-
+                {/* Content Column with improved spacing and readability */}
                 <div
                   class={cn(
-                    "pt-1",
+                    "flex flex-col justify-center p-3 md:p-4",
                     feature.imagePosition === "right"
-                      ? "lg:text-right"
-                      : "lg:text-left"
+                      ? "md:order-1 md:text-left"
+                      : "md:order-2 md:text-left",
+                    feature.imagePosition === "right"
+                      ? "md:col-span-8" // More text on left
+                      : "md:col-span-5" // Less text on right
                   )}>
-                  <a
-                    href="#"
-                    class={cn(
-                      "inline-flex items-center gap-1 text-xs font-medium transition-all duration-300",
-                      "py-1 px-2 rounded-full",
-                      "bg-gradient-to-r bg-size-200 bg-pos-0 hover:bg-pos-100",
-                      feature.accentColor,
-                      "text-white shadow-sm"
-                    )}
-                    aria-label={`Learn more about ${feature.title}`}>
-                    {feature.imagePosition === "left" && (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="10"
-                        height="10"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="mr-0.5">
-                        <path d="M5 12h14" />
-                        <path d="m12 5 7 7-7 7" />
-                      </svg>
-                    )}
-                    More
-                    {feature.imagePosition === "right" && (
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="10"
-                        height="10"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        class="ml-0.5">
-                        <path d="M5 12h14" />
-                        <path d="m12 5 7 7-7 7" />
-                      </svg>
-                    )}
-                  </a>
+                  <div class="space-y-2">
+                    <h3
+                      class={cn(
+                        "text-base sm:text-lg font-bold leading-tight"
+                      )}>
+                      <span
+                        class={cn(
+                          "bg-clip-text text-transparent bg-gradient-to-r",
+                          feature.accentColor
+                        )}>
+                        {feature.title}
+                      </span>
+                    </h3>
+
+                    <p class="text-xs sm:text-sm text-foreground/80 leading-relaxed">
+                      {feature.description}
+                    </p>
+
+                    <div class="pt-1">
+                      <a
+                        href="#"
+                        class={cn(
+                          "inline-flex items-center gap-1 text-xs font-medium transition-all duration-200",
+                          "py-1 px-2 rounded-full",
+                          "bg-gradient-to-r bg-size-200 bg-pos-0 hover:bg-pos-100",
+                          feature.accentColor,
+                          "text-white shadow-sm"
+                        )}
+                        aria-label={`Learn more about ${feature.title}`}>
+                        <span>Explore</span>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="10"
+                          height="10"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          aria-hidden="true">
+                          <path d="M5 12h14" />
+                          <path d="m12 5 7 7-7 7" />
+                        </svg>
+                      </a>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Decorative line - much thinner spacing */}
-            {index < features.length - 1 && (
-              <div class="w-full max-w-xs mx-auto mt-3 mb-1">
-                <div class="h-px bg-gradient-to-r from-transparent via-border/20 to-transparent" />
-              </div>
-            )}
+            {/* Decorative elements - smaller and less intrusive */}
+            <div
+              class={cn(
+                "absolute -z-10 rounded-full blur-[60px] opacity-5 w-1/4 aspect-square",
+                feature.imagePosition === "right"
+                  ? "-right-4 top-4"
+                  : "-left-4 top-4",
+                `bg-gradient-to-br ${feature.accentColor}`
+              )}
+              aria-hidden="true"
+            />
           </div>
         ))
       }
@@ -238,12 +233,12 @@ const features: Feature[] = [
   .bg-grid-pattern {
     background-image: linear-gradient(
         to right,
-        rgba(var(--foreground), 0.03) 1px,
+        rgba(var(--foreground), 0.05) 1px,
         transparent 1px
       ),
       linear-gradient(
         to bottom,
-        rgba(var(--foreground), 0.03) 1px,
+        rgba(var(--foreground), 0.05) 1px,
         transparent 1px
       );
     background-size: 30px 30px;
@@ -259,5 +254,49 @@ const features: Feature[] = [
 
   .bg-pos-100 {
     background-position: 100% 0%;
+  }
+
+  /* Disable hover animations for better performance on touch devices */
+  @media (hover: none) {
+    .group:hover img {
+      transform: none !important;
+    }
+
+    .group:hover .bg-pos-0 {
+      background-position: 0% 0% !important;
+    }
+  }
+
+  /* Improve animation performance */
+  @media (prefers-reduced-motion: reduce) {
+    .group-hover\:scale-105 {
+      transform: none;
+    }
+  }
+
+  /* Fix content jumping during image load */
+  img {
+    min-height: 100%;
+    object-fit: cover;
+    transform: translateZ(0);
+  }
+
+  /* Prevent layout shifts */
+  .aspect-[16\/9] {
+    position: relative;
+  }
+
+  .aspect-[16\/9]::before {
+    content: "";
+    display: block;
+    padding-top: 56.25%;
+  }
+
+  .aspect-[16\/9] > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 </style>

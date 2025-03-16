@@ -96,50 +96,113 @@ const makeTitle = title
       img {
         content-visibility: auto;
       }
+
+      /* Prevent layout shifts */
+      html {
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+
+      /* Optimize animations */
+      * {
+        backface-visibility: hidden;
+      }
+
+      /* Improve scrolling performance */
+      body {
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* Reduce animation complexity on mobile */
+      @media (max-width: 768px) {
+        [data-aos] {
+          opacity: 1 !important;
+          transform: none !important;
+          visibility: visible !important;
+        }
+      }
     </style>
     <script>
       import AOS from "aos";
 
-      // Initialize AOS
-      AOS.init({
-        duration: 800,
-        easing: "ease-out-cubic",
-        once: false,
-        mirror: true,
-        offset: 120,
-      });
-
+      // Initialize AOS with improved settings
       document.addEventListener("DOMContentLoaded", () => {
+        // Completely disable AOS on mobile devices
+        const isMobile =
+          window.innerWidth < 768 ||
+          navigator.userAgent.match(/Android/i) ||
+          navigator.userAgent.match(/iPhone|iPad|iPod/i);
+
+        if (isMobile) {
+          // Don't initialize AOS on mobile at all
+          document.querySelectorAll("[data-aos]").forEach((el) => {
+            el.removeAttribute("data-aos");
+            el.removeAttribute("data-aos-delay");
+            el.removeAttribute("data-aos-duration");
+          });
+        } else {
+          // Initialize with optimized settings on desktop
+          AOS.init({
+            duration: 500,
+            easing: "ease-out",
+            once: true,
+            mirror: false,
+            offset: 30,
+            disable: "phone",
+            startEvent: "DOMContentLoaded",
+          });
+        }
+
         const scrollToTopButton = document.getElementById("scrollToTop");
         const scrollProgress = document.getElementById("scrollProgress");
 
-        // Update scroll progress indicator
+        // Optimized scroll progress indicator with debouncing
+        let ticking = false;
+
         const updateScrollProgress = () => {
-          const windowHeight =
-            document.documentElement.scrollHeight -
-            document.documentElement.clientHeight;
-          const scrolled = (window.scrollY / windowHeight) * 100;
-          if (scrollProgress) {
-            scrollProgress.style.width = `${scrolled}%`;
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              const windowHeight =
+                document.documentElement.scrollHeight -
+                document.documentElement.clientHeight;
+              const scrolled = (window.scrollY / windowHeight) * 100;
+
+              if (scrollProgress) {
+                scrollProgress.style.width = `${scrolled}%`;
+              }
+
+              ticking = false;
+            });
+
+            ticking = true;
           }
         };
 
-        // Handle scroll events
-        window.addEventListener("scroll", () => {
-          // Update scroll progress
-          updateScrollProgress();
+        // Handle scroll events with passive option for better performance
+        window.addEventListener(
+          "scroll",
+          () => {
+            // Update scroll progress
+            updateScrollProgress();
 
-          // Show/hide scroll to top button
-          if (scrollToTopButton) {
-            if (window.scrollY > 500) {
-              scrollToTopButton.classList.remove("opacity-0", "invisible");
-              scrollToTopButton.classList.add("opacity-100", "visible");
-            } else {
-              scrollToTopButton.classList.add("opacity-0", "invisible");
-              scrollToTopButton.classList.remove("opacity-100", "visible");
+            // Show/hide scroll to top button
+            if (scrollToTopButton) {
+              if (window.scrollY > 500) {
+                if (!scrollToTopButton.classList.contains("visible")) {
+                  scrollToTopButton.classList.remove("opacity-0", "invisible");
+                  scrollToTopButton.classList.add("opacity-100", "visible");
+                }
+              } else {
+                if (scrollToTopButton.classList.contains("visible")) {
+                  scrollToTopButton.classList.add("opacity-0", "invisible");
+                  scrollToTopButton.classList.remove("opacity-100", "visible");
+                }
+              }
             }
-          }
-        });
+          },
+          { passive: true }
+        );
 
         // Scroll to top when button is clicked
         if (scrollToTopButton) {

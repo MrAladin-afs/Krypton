@@ -118,33 +118,33 @@ const features = [
 ];
 ---
 
-<div id="features" class="relative py-20 overflow-hidden">
+<div id="features" class="relative py-12 overflow-hidden">
   <!-- Cyber grid background with parallax effect -->
   <div class="absolute inset-0 cyber-grid opacity-10 z-0 parallax-bg"></div>
 
   <!-- Animated glow orbs -->
   <div
-    class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse">
+    class="absolute top-1/4 left-1/4 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl animate-pulse">
   </div>
   <div
-    class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"
+    class="absolute bottom-1/4 right-1/4 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl animate-pulse"
     style="animation-delay: 1s;">
   </div>
 
   <div class="container mx-auto px-4 relative z-10">
-    <div class="text-center mb-20" data-aos="fade-up" data-aos-duration="1000">
-      <div class="inline-block mb-4">
+    <div class="text-center mb-12" data-aos="fade-up" data-aos-duration="1000">
+      <div class="inline-block mb-3">
         <span
-          class="text-xs uppercase tracking-widest font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-cyan-400 mb-2 block">
+          class="text-xs uppercase tracking-widest font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-cyan-400 mb-1 block">
           Krypton V1 Server
         </span>
         <div
-          class="h-1 w-24 mx-auto bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-full">
+          class="h-1 w-20 mx-auto bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-full">
         </div>
       </div>
 
       <h2
-        class="text-5xl md:text-6xl font-black mb-6 text-shimmer"
+        class="text-4xl md:text-5xl font-black mb-4 text-shimmer"
         data-aos="zoom-in"
         data-aos-duration="1200"
         data-aos-delay="200">
@@ -152,7 +152,7 @@ const features = [
       </h2>
 
       <p
-        class="text-lg text-foreground/90 max-w-2xl mx-auto"
+        class="text-base text-foreground/90 max-w-2xl mx-auto"
         data-aos="fade-up"
         data-aos-duration="1000"
         data-aos-delay="400">
@@ -161,7 +161,7 @@ const features = [
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       {
         features.map((feature, index) => (
           <div
@@ -170,9 +170,9 @@ const features = [
             data-aos-duration="800"
             data-aos-offset="200"
             class={cn(
-              "group relative overflow-hidden rounded-xl transition-all duration-500 hover:z-10 hover:scale-105 cursor-pointer",
-              "bg-card/90 shadow-lg border-2 border-border",
-              "hover:shadow-[0_0_30px_var(--shadow-color)]",
+              "group relative overflow-hidden rounded-lg transition-all duration-500 hover:z-10 hover:scale-105 cursor-pointer",
+              "bg-card/90 shadow-md border border-border",
+              "hover:shadow-[0_0_20px_var(--shadow-color)]",
               "focus-within:ring-2 focus-within:ring-primary/70 focus-within:outline-none",
               "feature-card"
             )}
@@ -187,7 +187,7 @@ const features = [
 
             {/* Animated gradient border on hover */}
             <div
-              class="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-xl"
+              class="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-lg"
               style={`background: linear-gradient(135deg, ${feature.accentColor}, transparent 80%)`}
             />
 
@@ -197,32 +197,32 @@ const features = [
               style={`background: linear-gradient(to right, transparent, ${feature.accentColor}, transparent)`}
             />
 
-            <div class="p-8">
-              <div class="flex items-start gap-5">
+            <div class="p-4">
+              <div class="flex flex-col gap-3">
                 <div
                   class={cn(
-                    "flex h-16 w-16 shrink-0 items-center justify-center rounded-lg",
-                    `bg-gradient-to-br ${feature.color} shadow-lg group-hover:shadow-xl transition-all duration-500`,
+                    "flex h-12 w-12 shrink-0 items-center justify-center rounded-lg",
+                    `bg-gradient-to-br ${feature.color} shadow-md group-hover:shadow-lg transition-all duration-500`,
                     "group-hover:scale-110 group-hover:rotate-3"
                   )}
                   aria-hidden="true">
-                  <feature.icon class="h-8 w-8 text-white" strokeWidth={1.5} />
+                  <feature.icon class="h-6 w-6 text-white" strokeWidth={1.5} />
                 </div>
 
                 <div>
-                  <div class="flex items-center gap-3 mb-3 flex-wrap">
-                    <h3 class="text-xl font-bold text-foreground">
+                  <div class="flex items-center gap-2 mb-2 flex-wrap">
+                    <h3 class="text-lg font-bold text-foreground">
                       {feature.title}
                     </h3>
                     <span
                       class={cn(
-                        "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold",
+                        "inline-flex items-center rounded-full px-2 py-0.5 text-xs font-semibold",
                         `bg-gradient-to-r ${feature.color} text-white`
                       )}>
                       {feature.badge}
                     </span>
                   </div>
-                  <p class="text-foreground/90 leading-relaxed">
+                  <p class="text-sm text-foreground/90 leading-relaxed">
                     {feature.description}
                   </p>
                 </div>
@@ -231,18 +231,18 @@ const features = [
 
             {/* Corner accent */}
             <div
-              class="absolute -top-10 -right-10 w-20 h-20 bg-gradient-to-br opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-full blur-xl"
+              class="absolute -top-8 -right-8 w-16 h-16 bg-gradient-to-br opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-full blur-xl"
               style={`background: linear-gradient(135deg, ${feature.accentColor}, transparent)`}
               aria-hidden="true"
             />
 
             {/* Hover indicator */}
-            <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+            <div class="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div class="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
+                  width="12"
+                  height="12"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -264,7 +264,7 @@ const features = [
 
     {/* Bottom accent line */}
     <div
-      class="h-0.5 w-full max-w-md mx-auto mt-20 bg-gradient-to-r from-transparent via-primary/30 to-transparent">
+      class="h-0.5 w-full max-w-md mx-auto mt-12 bg-gradient-to-r from-transparent via-primary/30 to-transparent">
     </div>
   </div>
 </div>
@@ -296,19 +296,19 @@ const features = [
   }
 
   .feature-card:hover {
-    transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   }
 
   /* Subtle card tilt effect on hover */
   @media (pointer: fine) {
     .feature-card {
-      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
     .feature-card:hover {
-      transform: perspective(1000px) rotateX(2deg) rotateY(2deg)
-        translateY(-5px) scale(1.03);
+      transform: perspective(800px) rotateX(1.5deg) rotateY(1.5deg)
+        translateY(-3px) scale(1.02);
     }
   }
 </style>
@@ -329,10 +329,10 @@ const features = [
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
 
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
+        const rotateX = (y - centerY) / 25;
+        const rotateY = (centerX - x) / 25;
 
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px) scale(1.03)`;
+        card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-3px) scale(1.02)`;
       });
 
       card.addEventListener("mouseleave", () => {
