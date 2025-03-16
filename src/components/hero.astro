@@ -1,7 +1,15 @@
 ---
 import Link from "@/components/ui/link.astro";
 import { Icon } from "astro-icon/components";
+import { Image } from "astro:assets";
 import FuturisticText from "./FuturisticText";
+import LazyYouTube from "./LazyYouTube";
+
+// Define the YouTube thumbnail URL directly in the frontmatter
+const thumbnailUrl = "https://i.ytimg.com/vi/s8WHY3Gusx0/maxresdefault.jpg";
+// Define dimensions for the thumbnail
+const thumbnailWidth = 1280;
+const thumbnailHeight = 720;
 ---
 
 <main
@@ -63,23 +71,46 @@ import FuturisticText from "./FuturisticText";
   </div>
 
   <!-- Video section - 7 columns on large screens -->
-  <div
-    class="video-container lg:col-span-7 lg:order-2 w-full shadow-2xl shadow-[#5E5FEE]">
-    <div class="youtube-wrapper">
-      <!-- YouTube iframe with Partytown optimization -->
-      <iframe
-        width="100%"
-        height="100%"
-        src="https://www.youtube-nocookie.com/embed/s8WHY3Gusx0?controls=0&rel=0&modestbranding=1&autoplay=1&mute=1&loop=1&playlist=s8WHY3Gusx0&disablekb=1&iv_load_policy=3&fs=0&playsinline=1"
-        title="Formula One: Explained!"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen
-        loading="lazy"
-        class="youtube-frame"
-        style="pointer-events: none;"
-        data-partytown></iframe>
+  <div class="lg:col-span-7 lg:order-2 w-full">
+    <div
+      class="youtube-container relative rounded-2xl overflow-hidden shadow-2xl shadow-[#5E5FEE]">
+      <!-- Use Astro's Image component for the thumbnail -->
+      <div class="relative" style="padding-bottom: 56.25%;">
+        <Image
+          src={thumbnailUrl}
+          alt="Formula One: Explained!"
+          width={thumbnailWidth}
+          height={thumbnailHeight}
+          class="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          fetchpriority="high"
+          quality={90}
+          format="avif"
+        />
+
+        <!-- Overlay the LazyYouTube component with autoplay -->
+        <div class="absolute inset-0">
+          <LazyYouTube
+            client:load
+            videoId="s8WHY3Gusx0"
+            title="Formula One: Explained!"
+            autoplayOnLoad={true}
+            params={{
+              autoplay: 1,
+              mute: 1,
+              controls: 0,
+              rel: 0,
+              modestbranding: 1,
+              loop: 1,
+              playlist: "s8WHY3Gusx0",
+              disablekb: 1,
+              iv_load_policy: 3,
+              fs: 0,
+              playsinline: 1,
+            }}
+          />
+        </div>
+      </div>
     </div>
   </div>
 
@@ -135,39 +166,6 @@ import FuturisticText from "./FuturisticText";
     position: relative;
     z-index: 2;
     max-width: 100%;
-  }
-
-  /* Video container styling - refined */
-  .video-container {
-    padding: 1rem;
-    position: relative;
-    z-index: 2;
-    max-width: 800px;
-    margin: 0 auto;
-    border-radius: 1.5rem;
-  }
-
-  /* YouTube wrapper with clean implementation to hide controls */
-  .youtube-wrapper {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    border-radius: 1.5rem;
-    overflow: hidden;
-    background: #000;
-    margin: 1.5rem auto;
-    z-index: 2;
-  }
-
-  .youtube-frame {
-    position: absolute;
-    top: -60px; /* Hide top YouTube branding */
-    left: 0;
-    width: 100%;
-    height: calc(100% + 120px); /* Compensate for top and bottom hiding */
-    border-radius: 1.5rem;
-    z-index: 1;
-    filter: brightness(1.2) contrast(1.05);
   }
 
   /* Custom cursor styling - enhanced */
@@ -323,12 +321,6 @@ import FuturisticText from "./FuturisticText";
 
   /* Responsive adjustments */
   @media (max-width: 1023px) {
-    .youtube-wrapper {
-      transform: none;
-      margin: 0 auto 2rem auto;
-      max-width: 95%;
-    }
-
     h1 {
       font-size: 3rem;
       text-align: center;
@@ -351,22 +343,6 @@ import FuturisticText from "./FuturisticText";
   @media (max-width: 640px) {
     h1 {
       font-size: 2.5rem;
-    }
-
-    .youtube-wrapper {
-      max-width: 100%;
-      margin: 1rem auto;
-    }
-
-    /* Improve video container on mobile */
-    .video-container {
-      padding: 0.5rem;
-      border-radius: 1rem;
-      max-width: 100%;
-    }
-
-    .youtube-frame {
-      border-radius: 1rem;
     }
 
     /* Better spacing on mobile */
@@ -542,7 +518,7 @@ import FuturisticText from "./FuturisticText";
 
     // Add magnetic effect for interactive elements within hero section
     const interactiveElements = heroSection.querySelectorAll(
-      "a, button, .youtube-wrapper, .futuristic-button"
+      "a, button, .futuristic-button"
     );
 
     interactiveElements.forEach((el) => {

@@ -24,4 +24,10 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+  image: {
+    // Allow remote images from YouTube
+    domains: ["i.ytimg.com", "img.youtube.com"],
+    // Set default format to modern formats
+    format: "avif",
+  },
 });
