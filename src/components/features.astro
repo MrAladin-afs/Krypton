@@ -1,69 +1,343 @@
 ---
-// @ts-ignore
-import { Icon } from "astro-icon/components";
+// Import Lucide icons
+import {
+  CheckCircle,
+  Zap,
+  Car,
+  Briefcase,
+  Smile,
+  Shield,
+  FlaskConical,
+  ShoppingBag,
+  Users,
+  Shirt,
+} from "lucide-astro";
+import { cn } from "~/lib/utils";
 
 const features = [
   {
-    title: "Bring Your Own Framework",
+    title: "QBCore - Stable Version",
     description:
-      "Build your site using React, Svelte, Vue, Preact, web components, or just plain ol' HTML + JavaScript.",
-    icon: "bx:bxs-briefcase",
+      "Experience a smooth and reliable QBCore framework with no bugs or glitches. Every script is fully optimized and works flawlessly, ensuring the best performance and stability for your server.",
+    icon: CheckCircle,
+    badge: "Stable",
+    color: "from-indigo-500 via-purple-600 to-violet-700",
+    accentColor: "rgba(129, 140, 248, 0.8)",
+    aosDelay: "0",
   },
   {
-    title: "100% Static HTML, No JS",
+    title: "Smooth Gameplay",
     description:
-      "Astro renders your entire page to static HTML, removing all JavaScript from your final build by default.",
-    icon: "bx:bxs-window-alt",
+      "Enjoy a seamless and lag-free experience with optimized performance, ensuring stable frame rates and fluid gameplay at all times.",
+    icon: Zap,
+    badge: "Optimized",
+    color: "from-blue-500 via-cyan-400 to-blue-600",
+    accentColor: "rgba(56, 189, 248, 0.8)",
+    aosDelay: "50",
   },
   {
-    title: "On-Demand Components",
+    title: "200+ Custom Cars",
     description:
-      "Need some JS? Astro can automatically hydrate interactive components when they become visible on the page.  ",
-    icon: "bx:bxs-data",
+      "Explore a massive collection of 200+ unique vehicles, each with realistic handling, stunning designs, and custom modifications to enhance your driving experience!",
+    icon: Car,
+    badge: "Exclusive",
+    color: "from-red-500 via-orange-500 to-amber-500",
+    accentColor: "rgba(239, 68, 68, 0.8)",
+    aosDelay: "100",
   },
   {
-    title: "Broad Integration",
+    title: "New Jobs & Heists",
     description:
-      "Astro supports TypeScript, Scoped CSS, CSS Modules, Sass, Tailwind, Markdown, MDX, and any other npm packages.",
-    icon: "bx:bxs-bot",
+      "Take on exciting new careers and high-stakes heists with dynamic missions, interactive features, and big rewards. Endless opportunities await!",
+    icon: Briefcase,
+    badge: "Dynamic",
+    color: "from-emerald-500 via-green-500 to-teal-600",
+    accentColor: "rgba(16, 185, 129, 0.8)",
+    aosDelay: "150",
   },
   {
-    title: "SEO Enabled",
+    title: "Custom Emotes",
     description:
-      "Automatic sitemaps, RSS feeds, pagination and collections take the pain out of SEO and syndication. It just works!",
-    icon: "bx:bxs-file-find",
+      "Express yourself with a wide range of unique emotes, bringing more life and personality to your roleplay experience!",
+    icon: Smile,
+    badge: "Expressive",
+    color: "from-pink-500 via-rose-500 to-pink-600",
+    accentColor: "rgba(236, 72, 153, 0.8)",
+    aosDelay: "0",
   },
   {
-    title: "Community",
+    title: "Authentic Police Stations",
     description:
-      "Astro is an open source project powered by hundreds of contributors making thousands of individual contributions.",
-    icon: "bx:bxs-user",
+      "Experience true-to-life police stations across the map, including the iconic MRPD, Sandy Shores, and Paleto Bay. Each station is meticulously designed with realistic interiors and fully functional features.",
+    icon: Shield,
+    badge: "Realistic",
+    color: "from-blue-600 via-indigo-600 to-blue-800",
+    accentColor: "rgba(79, 70, 229, 0.8)",
+    aosDelay: "50",
+  },
+  {
+    title: "Advanced Drugs System",
+    description:
+      "Dive into a complex and immersive drug trade with an advanced system featuring production, distribution, and consumption. Engage in high-stakes missions and grow your criminal empire!",
+    icon: FlaskConical,
+    badge: "Complex",
+    color: "from-purple-500 via-violet-600 to-purple-800",
+    accentColor: "rgba(139, 92, 246, 0.8)",
+    aosDelay: "100",
+  },
+  {
+    title: "Blackmarket Access",
+    description:
+      "Gain exclusive access to the underground black market, where you can buy and sell illegal goods, rare items, and weapons. Navigate the world of high-risk deals for big rewards!",
+    icon: ShoppingBag,
+    badge: "Underground",
+    color: "from-slate-700 via-gray-800 to-slate-900",
+    accentColor: "rgba(71, 85, 105, 0.8)",
+    aosDelay: "150",
+  },
+  {
+    title: "Public & Whitelisted Jobs",
+    description:
+      "Choose from a wide variety of public jobs or apply for exclusive whitelisted roles. Whether you're looking to work your way up or take on a specialized career, there's something for everyone!",
+    icon: Users,
+    badge: "Diverse",
+    color: "from-amber-500 via-yellow-500 to-amber-600",
+    accentColor: "rgba(245, 158, 11, 0.8)",
+    aosDelay: "0",
+  },
+  {
+    title: "Exclusive Clothing Pack",
+    description:
+      "Unlock a unique collection of custom outfits and accessories, designed to give your character a distinctive and stylish look. Stand out with exclusive clothing options!",
+    icon: Shirt,
+    badge: "Stylish",
+    color: "from-teal-500 via-emerald-500 to-teal-600",
+    accentColor: "rgba(20, 184, 166, 0.8)",
+    aosDelay: "50",
   },
 ];
 ---
 
-<div class="mt-16 md:mt-0">
-  <h2 class="text-4xl lg:text-5xl font-bold lg:tracking-tight">
-    Everything you need to start a website
-  </h2>
-  <p class="text-lg mt-4 text-slate-600">
-    Astro comes batteries included. It takes the best parts of state-of-the-art
-    tools and adds its own innovations.
-  </p>
-</div>
+<div id="features" class="relative py-20 overflow-hidden">
+  <!-- Cyber grid background with parallax effect -->
+  <div class="absolute inset-0 cyber-grid opacity-10 z-0 parallax-bg"></div>
 
-<div class="grid sm:grid-cols-2 md:grid-cols-3 mt-16 gap-16">
-  {
-    features.map((item) => (
-      <div class="flex gap-4 items-start">
-        <div class="mt-1 bg-black rounded-full  p-2 w-8 h-8 shrink-0">
-          <Icon class="text-white" name={item.icon} />
-        </div>
-        <div>
-          <h3 class="font-semibold text-lg">{item.title}</h3>{" "}
-          <p class="text-slate-500 mt-2 leading-relaxed">{item.description}</p>
+  <!-- Animated glow orbs -->
+  <div
+    class="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse">
+  </div>
+  <div
+    class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"
+    style="animation-delay: 1s;">
+  </div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="text-center mb-20" data-aos="fade-up" data-aos-duration="1000">
+      <div class="inline-block mb-4">
+        <span
+          class="text-xs uppercase tracking-widest font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 to-cyan-400 mb-2 block">
+          Krypton V1 Server
+        </span>
+        <div
+          class="h-1 w-24 mx-auto bg-gradient-to-r from-indigo-500 to-cyan-500 rounded-full">
         </div>
       </div>
-    ))
-  }
+
+      <h2
+        class="text-5xl md:text-6xl font-black mb-6 text-shimmer"
+        data-aos="zoom-in"
+        data-aos-duration="1200"
+        data-aos-delay="200">
+        What's New and Exclusive
+      </h2>
+
+      <p
+        class="text-lg text-foreground/90 max-w-2xl mx-auto"
+        data-aos="fade-up"
+        data-aos-duration="1000"
+        data-aos-delay="400">
+        Experience the next level of FiveM roleplay with our premium features
+        and exclusive content designed for the ultimate gaming experience.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        features.map((feature, index) => (
+          <div
+            data-aos="fade-up"
+            data-aos-delay={feature.aosDelay}
+            data-aos-duration="800"
+            data-aos-offset="200"
+            class={cn(
+              "group relative overflow-hidden rounded-xl transition-all duration-500 hover:z-10 hover:scale-105 cursor-pointer",
+              "bg-card/90 shadow-lg border-2 border-border",
+              "hover:shadow-[0_0_30px_var(--shadow-color)]",
+              "focus-within:ring-2 focus-within:ring-primary/70 focus-within:outline-none",
+              "feature-card"
+            )}
+            style={`--shadow-color: ${feature.accentColor}`}
+            tabindex="0"
+            aria-label={`Feature: ${feature.title}`}>
+            {/* Card highlight accent */}
+            <div
+              class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r opacity-80"
+              style={`background: linear-gradient(to right, ${feature.accentColor}, transparent)`}
+            />
+
+            {/* Animated gradient border on hover */}
+            <div
+              class="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-xl"
+              style={`background: linear-gradient(135deg, ${feature.accentColor}, transparent 80%)`}
+            />
+
+            {/* Animated glow line at bottom */}
+            <div
+              class="absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full transition-all duration-700 ease-out"
+              style={`background: linear-gradient(to right, transparent, ${feature.accentColor}, transparent)`}
+            />
+
+            <div class="p-8">
+              <div class="flex items-start gap-5">
+                <div
+                  class={cn(
+                    "flex h-16 w-16 shrink-0 items-center justify-center rounded-lg",
+                    `bg-gradient-to-br ${feature.color} shadow-lg group-hover:shadow-xl transition-all duration-500`,
+                    "group-hover:scale-110 group-hover:rotate-3"
+                  )}
+                  aria-hidden="true">
+                  <feature.icon class="h-8 w-8 text-white" strokeWidth={1.5} />
+                </div>
+
+                <div>
+                  <div class="flex items-center gap-3 mb-3 flex-wrap">
+                    <h3 class="text-xl font-bold text-foreground">
+                      {feature.title}
+                    </h3>
+                    <span
+                      class={cn(
+                        "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold",
+                        `bg-gradient-to-r ${feature.color} text-white`
+                      )}>
+                      {feature.badge}
+                    </span>
+                  </div>
+                  <p class="text-foreground/90 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Corner accent */}
+            <div
+              class="absolute -top-10 -right-10 w-20 h-20 bg-gradient-to-br opacity-0 group-hover:opacity-30 transition-opacity duration-500 rounded-full blur-xl"
+              style={`background: linear-gradient(135deg, ${feature.accentColor}, transparent)`}
+              aria-hidden="true"
+            />
+
+            {/* Hover indicator */}
+            <div class="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-primary">
+                  <>
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </>
+                </svg>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    {/* Bottom accent line */}
+    <div
+      class="h-0.5 w-full max-w-md mx-auto mt-20 bg-gradient-to-r from-transparent via-primary/30 to-transparent">
+    </div>
+  </div>
 </div>
+
+<style>
+  /* Ensure focus styles are visible for keyboard navigation */
+  [tabindex]:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  /* Improve contrast for text */
+  .text-foreground/90 {
+    color: rgba(var(--foreground), 0.9);
+  }
+
+  /* Parallax background effect */
+  .parallax-bg {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  /* Enhanced card interactions */
+  .feature-card {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Subtle card tilt effect on hover */
+  @media (pointer: fine) {
+    .feature-card {
+      transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .feature-card:hover {
+      transform: perspective(1000px) rotateX(2deg) rotateY(2deg)
+        translateY(-5px) scale(1.03);
+    }
+  }
+</style>
+
+<script>
+  // Add subtle mouse movement effect to cards
+  document.addEventListener("DOMContentLoaded", () => {
+    const cards = document.querySelectorAll<HTMLElement>(".feature-card");
+
+    cards.forEach((card) => {
+      card.addEventListener("mousemove", (e: MouseEvent) => {
+        if (window.innerWidth < 768) return; // Skip on mobile
+
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left; // x position within the element
+        const y = e.clientY - rect.top; // y position within the element
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = (y - centerY) / 20;
+        const rotateY = (centerX - x) / 20;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px) scale(1.03)`;
+      });
+
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "";
+      });
+    });
+  });
+</script>

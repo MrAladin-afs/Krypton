@@ -49,16 +49,16 @@ import FuturisticText from "./FuturisticText";
         <Icon class="text-white w-5 h-5" name="bx:bxs-rocket" />
         Get Started
       </Link>
-      <Link
-        size="lg"
-        style="outline"
-        rel="noopener"
-        href="#"
-        class="flex gap-2 items-center justify-center futuristic-button secondary-button"
-        target="_blank">
-        <Icon class="w-5 h-5" name="bx:bxs-info-circle" />
-        Learn More
-      </Link>
+      <a
+        href="#features"
+        class="flex gap-2 items-center justify-center futuristic-button secondary-button group"
+        aria-label="Explore Features">
+        <span>Explore Features</span>
+        <Icon
+          class="text-current w-5 h-5 group-hover:translate-y-1 transition-transform"
+          name="bx:bxs-down-arrow"
+        />
+      </a>
     </div>
   </div>
 
@@ -87,6 +87,19 @@ import FuturisticText from "./FuturisticText";
   <div id="custom-cursor-dot" class="custom-cursor-dot"></div>
   <div id="custom-cursor-outline" class="custom-cursor-outline"></div>
   <div id="custom-cursor-glow" class="custom-cursor-glow"></div>
+
+  <!-- Scroll indicator -->
+  <div
+    class="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center opacity-80 hover:opacity-100 transition-opacity duration-300">
+    <span class="text-xs uppercase tracking-widest mb-2 text-muted-foreground"
+      >Scroll Down</span
+    >
+    <div
+      class="w-6 h-10 border-2 border-primary/50 rounded-full flex justify-center p-1">
+      <div class="w-1.5 h-1.5 bg-primary rounded-full animate-scroll-down">
+      </div>
+    </div>
+  </div>
 </main>
 
 <style>
@@ -369,6 +382,25 @@ import FuturisticText from "./FuturisticText";
       width: 100%;
       justify-content: center;
     }
+  }
+
+  @keyframes scrollDown {
+    0% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    75% {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+  }
+
+  .animate-scroll-down {
+    animation: scrollDown 2s ease-in-out infinite;
   }
 </style>
 

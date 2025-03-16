@@ -1,6 +1,5 @@
 ---
 import Container from "@/components/container.astro";
-import Link from "@/components/ui/link.astro";
 import Dropdown from "./dropdown.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 import { ModeToggle } from "@/components/ModeToggle";
@@ -52,7 +51,7 @@ const menuitems = [
         </a>
         <div class="block lg:hidden items-center justify-center space-x-3">
           <ModeToggle client:load />
-          <MenuIcon class="w-8 h-8 text-primary translate-y-2.5" />
+          <MenuIcon class="w-10 h-10 text-primary translate-y-2.5" />
         </div>
       </div>
       <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
@@ -86,10 +85,7 @@ const menuitems = [
             ))
           }
         </ul>
-        <div class="lg:hidden flex items-center mt-3 gap-4">
-          <Link href="#" style="muted" block size="md">Log in</Link>
-          <Link href="#" size="md" block>Sign up</Link>
-        </div>
+        
       </MenuItems>
     </Astronav>
     <div>
