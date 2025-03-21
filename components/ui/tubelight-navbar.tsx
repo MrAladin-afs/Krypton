@@ -16,59 +16,45 @@ interface NavBarProps {
 
 export function NavBar({ items, className }: NavBarProps) {
   const [activeTab, setActiveTab] = useState("");
-  const [isMobile, setIsMobile] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
-  // Set the active tab based on the current URL path
   useEffect(() => {
-    const updateActiveTab = () => {
-      // Get the current path
-      const path = window.location.pathname;
+    setIsMounted(true);
+    // Initially set the active tab based on current URL
+    const path = window.location.pathname;
+    const activeItem = items.find((item) => {
+      if (path === "/" && item.url === "/") return true;
+      return path !== "/" && item.url !== "/" && path.startsWith(item.url);
+    });
+    setActiveTab(
+      activeItem?.name || (items[0].url === "/" ? items[0].name : "")
+    );
 
-      // Find the item that matches the current path
+    // Listen for URL changes
+    const handleUrlChange = () => {
+      const path = window.location.pathname;
       const activeItem = items.find((item) => {
-        // Special case for home page
-        if (path === "/" && item.url === "/") {
-          return true;
-        }
-        // For other pages, check if the current path starts with the item's URL
-        // This handles both exact matches and sub-paths
+        if (path === "/" && item.url === "/") return true;
         return path !== "/" && item.url !== "/" && path.startsWith(item.url);
       });
-
-      // Set the active tab to the name of the active item or the first item if no match
       setActiveTab(
-        activeItem ? activeItem.name : items[0].url === "/" ? items[0].name : ""
+        activeItem?.name || (items[0].url === "/" ? items[0].name : "")
       );
     };
 
-    // Set the active tab on mount and when the URL changes
-    updateActiveTab();
-
-    // Listen for URL changes (for client-side navigation)
-    window.addEventListener("popstate", updateActiveTab);
-
-    return () => {
-      window.removeEventListener("popstate", updateActiveTab);
-    };
+    window.addEventListener("popstate", handleUrlChange);
+    return () => window.removeEventListener("popstate", handleUrlChange);
   }, [items]);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  if (!isMounted) return null;
 
   return (
     <div
       className={cn(
-        "fixed bottom-6 sm:bottom-auto sm:top-0 left-1/2 -translate-x-1/2 z-50 sm:pt-6",
+        "fixed bottom-4 sm:top-0 left-1/2 -translate-x-1/2 z-50",
         className
       )}>
-      <div className="flex items-center gap-3 bg-background/5 border border-border backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
+      <div className="flex items-center gap-1 bg-background/60 border border-border/60 backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
         {items.map((item) => {
           const Icon = item.icon;
           const isActive = activeTab === item.name;
@@ -77,11 +63,9 @@ export function NavBar({ items, className }: NavBarProps) {
             <a
               key={item.name}
               href={item.url}
-              onClick={() => {
-                setActiveTab(item.name);
-              }}
+              onClick={() => setActiveTab(item.name)}
               className={cn(
-                "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
+                "relative cursor-pointer text-sm font-semibold px-4 py-1.5 rounded-full transition-colors",
                 "text-foreground/80 hover:text-primary",
                 isActive && "bg-muted text-primary"
               )}>
@@ -99,10 +83,10 @@ export function NavBar({ items, className }: NavBarProps) {
                     stiffness: 300,
                     damping: 30,
                   }}>
-                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-primary rounded-t-full">
-                    <div className="absolute w-12 h-6 bg-primary/20 rounded-full blur-md -top-2 -left-2" />
-                    <div className="absolute w-8 h-6 bg-primary/20 rounded-full blur-md -top-1" />
-                    <div className="absolute w-4 h-4 bg-primary/20 rounded-full blur-sm top-0 left-2" />
+                  <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-6 h-0.5 bg-primary rounded-t-full">
+                    <div className="absolute w-10 h-5 bg-primary/20 rounded-full blur-md -top-2 -left-2" />
+                    <div className="absolute w-6 h-4 bg-primary/20 rounded-full blur-md -top-1" />
+                    <div className="absolute w-3 h-3 bg-primary/20 rounded-full blur-sm top-0 left-1.5" />
                   </div>
                 </motion.div>
               )}

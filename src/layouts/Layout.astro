@@ -62,28 +62,27 @@ const makeTitle = title
       id="scrollProgress"
       class="fixed top-0 left-0 z-50 h-1 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 w-0 transition-all duration-100">
     </div>
-
-    <Navbar />
-
-    <!-- Main content with proper spacing for the fixed navbar -->
-    <div class="page-content pt-20 lg:pt-28">
+   
+      <Navbar />  
+  
+    
+    <div class="pt-[-16px]">
       <slot />
     </div>
-
     <Footer />
 
     <!-- Scroll to top button -->
     <button
       id="scrollToTop"
-      class="fixed bottom-24 right-8 z-50 p-0 w-12 h-12 flex items-center justify-center rounded-full bg-card/80 border border-border/50 text-foreground shadow-lg backdrop-blur-md opacity-0 invisible transition-all duration-300 hover:scale-110 group lg:bottom-8"
+      class="fixed bottom-16 right-4 z-50 p-0 w-10 h-10 flex items-center justify-center rounded-full bg-card/80 border border-border/50 text-foreground shadow-lg backdrop-blur-md opacity-0 invisible transition-all duration-300 hover:scale-110 group lg:bottom-4"
       aria-label="Scroll to top">
       <div
         class="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
       </div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
+        width="16"
+        height="16"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"

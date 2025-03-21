@@ -1,5 +1,4 @@
 ---
-import Container from "@/components/container.astro";
 import { Astronav, MenuItems, MenuIcon } from "astro-navbar";
 import { ModeToggle } from "@/components/ModeToggle";
 import TubelightNavWrapper from "@/components/TubelightNavWrapper";
@@ -24,17 +23,17 @@ const menuitems = [
 ];
 ---
 
-<Container>
-  <header class="flex flex-col lg:flex-row justify-between items-center my-5">
+<div class="max-w-screen-xl mx-auto px-4">
+  <header class="flex justify-between items-center py-1">
     <Astronav>
       <div class="flex w-full lg:w-auto items-center justify-between">
         <a href="/" class="flex items-center" aria-label="Krypton Scripts">
           <img
             src="/images/krypton-logo-optimized.avif"
             alt="Krypton Logo"
-            width="80"
-            height="80"
-            class="w-20 h-20 object-contain"
+            width="56"
+            height="56"
+            class="w-12 h-12 object-contain"
           />
         </a>
         <div class="block lg:hidden items-center justify-center space-x-3">
@@ -43,18 +42,14 @@ const menuitems = [
         </div>
       </div>
       <MenuItems class="hidden w-full lg:w-auto mt-2 lg:flex lg:mt-0">
-        <!-- Tubelight navbar for larger screens - it will be positioned at top center -->
-        <div class="hidden lg:block">
-          <span class="opacity-0"> <!-- Spacer to preserve layout --></span>
-        </div>
-        <!-- Mobile fallback menu when JavaScript is disabled -->
-        <ul class="flex flex-col lg:hidden lg:flex-row lg:gap-3">
+        <!-- Fallback menu for when JavaScript is disabled -->
+        <ul class="flex flex-col lg:hidden">
           {
             menuitems.map((item) => (
               <li>
                 <a
                   href={item.path}
-                  class="flex lg:px-3 py-2 items-center text-primary hover:text-primary/80">
+                  class="flex py-2 items-center text-primary hover:text-primary/80">
                   <span>{item.title}</span>
                 </a>
               </li>
@@ -63,36 +58,28 @@ const menuitems = [
         </ul>
       </MenuItems>
     </Astronav>
-    <div>
-      <div class="hidden lg:flex items-center gap-4">
-        <ModeToggle client:load />
-      </div>
+    <div class="hidden lg:flex items-center">
+      <ModeToggle client:load />
     </div>
   </header>
-</Container>
+</div>
 
 <!-- Desktop tubelight navbar positioned at top center -->
 <div
-  class="hidden lg:block lg:fixed lg:top-5 lg:left-1/2 lg:-translate-x-1/2 lg:z-50">
+  class="hidden lg:block lg:fixed lg:top-1.5 lg:left-1/2 lg:-translate-x-1/2 lg:z-50">
   <TubelightNavWrapper client:load />
 </div>
 
 <!-- Mobile tubelight navbar fixed at bottom -->
-<div
-  class="lg:hidden fixed bottom-0 left-0 right-0 z-50 flex justify-center pb-4">
+<div class="lg:hidden fixed bottom-0 left-0 right-0 z-50 flex justify-center">
   <TubelightNavWrapper client:load />
 </div>
 
 <style>
-  /* Add styles to ensure proper positioning and visibility */
-  .fixed {
-    position: fixed;
-  }
-
   /* Make space for the fixed mobile navbar at the bottom */
   @media (max-width: 1023px) {
-    :global(main) {
-      padding-bottom: 5rem;
+    :global(body) {
+      padding-bottom: 2.75rem;
     }
   }
 </style>
