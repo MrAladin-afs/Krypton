@@ -64,13 +64,18 @@ const makeTitle = title
     </div>
 
     <Navbar />
-    <slot />
+
+    <!-- Main content with proper spacing for the fixed navbar -->
+    <div class="page-content pt-20 lg:pt-28">
+      <slot />
+    </div>
+
     <Footer />
 
     <!-- Scroll to top button -->
     <button
       id="scrollToTop"
-      class="fixed bottom-8 right-8 z-50 p-0 w-12 h-12 flex items-center justify-center rounded-full bg-card/80 border border-border/50 text-foreground shadow-lg backdrop-blur-md opacity-0 invisible transition-all duration-300 hover:scale-110 group"
+      class="fixed bottom-24 right-8 z-50 p-0 w-12 h-12 flex items-center justify-center rounded-full bg-card/80 border border-border/50 text-foreground shadow-lg backdrop-blur-md opacity-0 invisible transition-all duration-300 hover:scale-110 group lg:bottom-8"
       aria-label="Scroll to top">
       <div
         class="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -112,6 +117,13 @@ const makeTitle = title
       body {
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
+      }
+
+      /* Add padding at bottom of page for mobile navbar */
+      @media (max-width: 768px) {
+        .page-content {
+          padding-bottom: 6rem;
+        }
       }
 
       /* Reduce animation complexity on mobile */
@@ -216,6 +228,27 @@ const makeTitle = title
 
         // Initialize scroll progress on page load
         updateScrollProgress();
+
+        // Update active tab in the navbar when URL changes
+        const updateActiveTab = () => {
+          // Dispatch a custom event to force the navbar to update
+          window.dispatchEvent(new CustomEvent("urlChanged"));
+        };
+
+        // Listen for client-side navigation
+        document.addEventListener("click", (e) => {
+          const target = e.target as HTMLElement;
+          const anchor = target.closest("a");
+
+          if (
+            anchor &&
+            anchor.href &&
+            anchor.href.startsWith(window.location.origin)
+          ) {
+            // Small delay to allow the navigation to complete
+            setTimeout(updateActiveTab, 100);
+          }
+        });
       });
     </script>
   </body>

@@ -34,6 +34,7 @@
     "astro-seo": "^0.8.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.5.0",
     "lite-youtube-embed": "^0.3.3",
     "lucide-astro": "^0.482.0",
     "lucide-react": "^0.482.0",
