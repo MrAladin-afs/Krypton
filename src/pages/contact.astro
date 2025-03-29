@@ -1,5 +1,4 @@
 ---
-import Contactform from "@/components/contactform.astro";
 import Container from "@/components/container.astro";
 import Sectionhead from "@/components/sectionhead.astro";
 import Layout from "@/layouts/Layout.astro";
@@ -30,11 +29,10 @@ import { Icon } from "astro-icon/components";
         </Fragment>
       </Sectionhead>
 
-      <div
-        class="grid md:grid-cols-2 gap-10 mx-auto max-w-4xl mt-16 relative z-10">
+      <div class="max-w-2xl mx-auto mt-16 relative z-10">
         <!-- Contact Information -->
         <div
-          class="backdrop-blur-lg bg-white/70 dark:bg-black/10 rounded-2xl p-1 shadow-xl h-fit">
+          class="backdrop-blur-lg bg-white/70 dark:bg-black/10 rounded-2xl p-1 shadow-xl">
           <div class="bg-white/80 dark:bg-black/40 rounded-2xl p-6 md:p-8">
             <h2
               class="font-medium text-2xl text-gray-800 dark:text-white mb-6 krypton-text">
@@ -88,29 +86,23 @@ import { Icon } from "astro-icon/components";
               <!-- Social Media Links -->
               <div
                 class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-800">
-                <h3 class="text-gray-800 dark:text-white font-medium mb-4">
-                  Connect With Us
+                <h3 class="text-gray-800 dark:text-white font-medium mb-6 text-xl flex items-center">
+                  <span class="bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">Connect With Us</span>
                 </h3>
-                <div class="flex space-x-4">
-                  <!-- <a
-                    href="#"
-                    class="bg-gray-100/80 dark:bg-black/30 p-3 rounded-lg text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 hover:bg-gray-200/80 dark:hover:bg-black/40 transition-all duration-300">
-                    <Icon class="w-5 h-5" name="uil:github" />
-                  </a> -->
+                <div class="flex justify-center">
                   <a
                     href="https://discord.gg/FrjYVJfKvB"
-                    class="bg-gray-100/80 dark:bg-black/30 p-3 rounded-lg text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 dark:hover:text-indigo-300 hover:bg-gray-200/80 dark:hover:bg-black/40 transition-all duration-300">
-                    <Icon class="w-5 h-5" name="uil:discord" />
+                    class="group relative inline-flex items-center justify-center px-6 py-3 text-base font-medium text-white bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl hover:shadow-lg hover:shadow-indigo-500/20 transition-all duration-300 transform hover:-translate-y-1">
+                    <span class="absolute inset-0 w-full h-full bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    <span class="relative flex items-center">
+                      <Icon class="w-5 h-5 mr-2" name="uil:discord" />
+                      Join our Discord Community
+                    </span>
                   </a>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
-        <!-- Contact Form -->
-        <div>
-          <Contactform />
         </div>
       </div>
     </Container>
