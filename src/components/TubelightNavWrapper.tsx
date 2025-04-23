@@ -1,6 +1,6 @@
 import React from "react";
 import { NavBar } from "../../components/ui/tubelight-navbar";
-import { Home, FileText, Info, Mail } from "lucide-react";
+import { Home, FileText, Info, Mail, Book } from "lucide-react";
 
 // Define navigation items with Lucide icons that match the actual routes
 const navItems = [
@@ -23,6 +23,11 @@ const navItems = [
     name: "Contact",
     url: "/contact",
     icon: Mail,
+  },
+  {
+    name: "Docs",
+    url: "https://docs.kryptonnscripts.store/",
+    icon: Book,
   },
 ];
 
