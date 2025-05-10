@@ -1,0 +1,132 @@
+---
+interface Review {
+  name: string;
+  role: string;
+  avatar: string;
+  content: string;
+  rating: number;
+}
+
+const reviews: Review[] = [
+  {
+    name: "Kevin95",
+    role: "Server Owner",
+    avatar: "https://files.fivemerr.com/images/5390bb39-1b3f-47e1-8c31-a7ba113790ab.png",
+    content: "I came in here hesitant and with quite a few questions. helped me out and I even asked someone else about their experience. I honestly couldn't have made a better decision. I'm glad I found yall on YouTube.  We had some hiccups that were out of our control. However there was very patient and understanding. I've never had a server before and was extremely nervous. I have 100% trust in Krypton. Thank you and if anyone wants feedback on my experience feel free to message me.",
+    rating: 5
+  },
+  {
+    name: "DK SILVA",
+    role: "Server Owner",
+    avatar: "https://files.fivemerr.com/images/dd127f87-ad9e-4237-bf14-19b5d146ea8d.png",
+    content: "I am Brazilian, I bought the Base, and I am very satisfied with everything: the attention, the service, and the support. I highly recommend them; they handle everything quickly and before the estimated time.",
+    rating: 5
+  },
+  {
+    name: "JimWithDaTool’y",
+    role: "Server Owner",
+    avatar: "https://files.fivemerr.com/images/91f6cf8d-c39b-4484-a0d2-9ec7df1fd914.png",
+    content: "I can say that the staff team is amazing fast and very helpful ❤️ can say they are very talented and has a really good server base even went out there way just for us to tey nd test out the server and very trustworthy ❤️🫡",
+    rating: 5
+  }
+];
+---
+
+<section class="py-24 bg-gradient-to-b from-background to-background/80 relative overflow-hidden">
+  <!-- Decorative elements -->
+  <div class="absolute top-0 left-1/4 w-64 h-64 bg-primary/10 rounded-full filter blur-3xl" aria-hidden="true"></div>
+  <div class="absolute bottom-0 right-1/4 w-80 h-80 bg-primary/10 rounded-full filter blur-3xl" aria-hidden="true"></div>
+
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/80">
+        Client Testimonials
+      </h2>
+      <p class="text-lg text-foreground/80 max-w-2xl mx-auto">
+        See what our clients say about our services and how we've helped transform their FiveM servers.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {reviews.map((review) => (
+        <div class="bg-card/50 backdrop-blur-sm border border-border/50 rounded-xl p-6 hover:border-primary/50 transition-colors duration-300 group">
+          <div class="flex items-center gap-4 mb-4">
+            <img
+              src={review.avatar}
+              alt={`${review.name}'s avatar`}
+              class="w-12 h-12 rounded-full object-cover border-2 border-primary/20 group-hover:border-primary/50 transition-colors duration-300"
+            />
+            <div>
+              <h3 class="font-semibold text-lg">{review.name}</h3>
+              <p class="text-sm text-foreground/60">{review.role}</p>
+            </div>
+          </div>
+          
+          <div class="flex gap-1 mb-4">
+            {Array.from({ length: review.rating }).map(() => (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-5 h-5 text-yellow-400">
+                <path
+                  fill-rule="evenodd"
+                  d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z"
+                  clip-rule="evenodd" />
+              </svg>
+            ))}
+          </div>
+          
+          <p class="text-foreground/80 leading-relaxed">
+            "{review.content}"
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Call to action -->
+    <div class="text-center mt-16">
+      <a
+        href="/contact"
+        class="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-300">
+        Share Your Experience
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="ml-1">
+          <path d="M5 12h14" />
+          <path d="m12 5 7 7-7 7" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Add smooth hover transitions */
+  .group {
+    transition: transform 0.3s ease;
+  }
+  
+  .group:hover {
+    transform: translateY(-4px);
+  }
+  
+  /* Improve accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .group {
+      transition: none;
+    }
+    
+    .group:hover {
+      transform: none;
+    }
+  }
+</style> 
