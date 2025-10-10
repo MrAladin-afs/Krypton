@@ -12,9 +12,14 @@ const blogCollection = defineCollection({
       alt: z.string(),
     }),
     publishDate: z.string().transform(str => new Date(str)),
-    author: z.string().default('Astroship'),
+    author: z.string().default('Krypton Scripts'),
     category: z.string(),
     tags: z.array(z.string()),
+    // SEO enhancements
+    seoTitle: z.string().optional(),
+    seoDescription: z.string().optional(),
+    featured: z.boolean().default(false),
+    readingTime: z.number().optional(),
   }),
 });
 

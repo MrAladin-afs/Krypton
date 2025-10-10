@@ -14,7 +14,7 @@ export interface Props {
 const canonicalURL = new URL(Astro.url.pathname, Astro.site).toString();
 
 const resolvedImageWithDomain = new URL(
-  "https://files.fivemerr.com/images/dd5ce725-5757-4762-9104-48eeae6a0e8e.png",
+  "/opengraph.jpg",
   Astro.site
 ).toString();
 
@@ -36,7 +36,7 @@ const makeTitle = title
     <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
     <SEO
       title={makeTitle}
-      description="Krypton Scripts offers premium development solutions with 24/7 support, creativity, optimization, and futuristic designs."
+      description="Krypton Scripts offers premium development solutions with 24/7 support, creativity, optimization, and futuristic designs. Expert web development, FiveM scripts, and custom solutions."
       canonical={canonicalURL}
       twitter={{
         creator: "@kryptonscripts",
@@ -51,10 +51,61 @@ const makeTitle = title
           image: resolvedImageWithDomain,
         },
         image: {
-          alt: "Krypton Scripts Homepage",
+          alt: "Krypton Scripts - Premium Development Solutions",
+          width: 1200,
+          height: 630,
         },
       }}
     />
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="bingbot" content="index, follow" />
+    <meta name="author" content="Krypton Scripts" />
+    <meta name="publisher" content="Krypton Scripts" />
+    <meta name="theme-color" content="#6366f1" />
+    <meta name="msapplication-TileColor" content="#6366f1" />
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://i.ytimg.com" />
+    <link rel="preconnect" href="https://img.youtube.com" />
+    
+    <!-- DNS Prefetch for performance -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="//fonts.gstatic.com" />
+    
+    <!-- Performance Optimizations -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    
+    <!-- Resource Hints -->
+    <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/bricolage-grotesque-var.woff2" as="font" type="font/woff2" crossorigin />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Krypton Scripts",
+        "url": "https://blog.kryptongame.com",
+        "logo": "https://blog.kryptongame.com/krypton-logo.svg",
+        "description": "Premium development solutions with 24/7 support, creativity, optimization, and futuristic designs",
+        "sameAs": [
+          "https://twitter.com/kryptonscripts"
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "customer service",
+          "availableLanguage": "English"
+        }
+      }
+    </script>
   </head>
   <body>
     <!-- Scroll progress indicator -->

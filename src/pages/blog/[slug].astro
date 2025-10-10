@@ -4,6 +4,8 @@ import Layout from "@/layouts/Layout.astro";
 import Container from "@/components/container.astro";
 import Typography from "@/components/ui/typography.astro";
 import { User, Calendar, Clock, ArrowLeft, Share2 } from "lucide-react";
+import { calculateReadingTime, extractTextFromHTML } from "@/utils/readingTime";
+import RelatedPosts from "@/components/RelatedPosts.astro";
 
 // Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -17,11 +19,93 @@ export async function getStaticPaths() {
 // Get the entry directly from the prop on render
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+
+// Calculate reading time
+const { Content: RenderedContent } = await entry.render();
+const htmlContent = await RenderedContent.toString();
+const textContent = extractTextFromHTML(htmlContent);
+const { readingTime, wordCount } = calculateReadingTime(textContent);
+
+// Generate canonical URL
+const canonicalURL = new URL(`/blog/${entry.slug}`, Astro.site).toString();
+
+// Generate structured data
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": entry.data.title,
+  "description": entry.data.snippet,
+  "image": entry.data.image?.src ? new URL(entry.data.image.src, Astro.site).toString() : undefined,
+  "author": {
+    "@type": "Person",
+    "name": entry.data.author
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Krypton Scripts",
+    "logo": {
+      "@type": "ImageObject",
+      "url": new URL("/krypton-logo.svg", Astro.site).toString()
+    }
+  },
+  "datePublished": entry.data.publishDate.toISOString(),
+  "dateModified": entry.data.publishDate.toISOString(),
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalURL
+  },
+  "wordCount": wordCount,
+  "timeRequired": `PT${readingTime}M`,
+  "articleSection": entry.data.category,
+  "keywords": entry.data.tags.join(", ")
+};
 ---
 
 <Layout title={entry.data.title}>
+  <!-- Structured Data -->
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+  
+  <!-- Additional SEO Meta Tags -->
+  <meta name="description" content={entry.data.snippet} />
+  <meta name="keywords" content={entry.data.tags.join(", ")} />
+  <meta name="article:author" content={entry.data.author} />
+  <meta name="article:published_time" content={entry.data.publishDate.toISOString()} />
+  <meta name="article:section" content={entry.data.category} />
+  <meta name="article:tag" content={entry.data.tags.join(", ")} />
+  <meta name="twitter:title" content={entry.data.title} />
+  <meta name="twitter:description" content={entry.data.snippet} />
+  <meta name="twitter:image" content={entry.data.image?.src ? new URL(entry.data.image.src, Astro.site).toString() : undefined} />
+  <meta property="og:title" content={entry.data.title} />
+  <meta property="og:description" content={entry.data.snippet} />
+  <meta property="og:type" content="article" />
+  <meta property="og:article:author" content={entry.data.author} />
+  <meta property="og:article:published_time" content={entry.data.publishDate.toISOString()} />
+  <meta property="og:article:section" content={entry.data.category} />
+  <meta property="og:article:tag" content={entry.data.tags.join(", ")} />
+  <link rel="canonical" href={canonicalURL} />
   <Container>
-    <article class="mx-auto max-w-3xl mt-14">
+    <!-- Breadcrumbs -->
+    <nav class="mx-auto max-w-3xl mt-8" aria-label="Breadcrumb">
+      <ol class="flex items-center space-x-2 text-sm text-muted-foreground">
+        <li>
+          <a href="/" class="hover:text-primary transition-colors">Home</a>
+        </li>
+        <li class="flex items-center">
+          <svg class="w-4 h-4 mx-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+          </svg>
+          <a href="/blog" class="hover:text-primary transition-colors">Blog</a>
+        </li>
+        <li class="flex items-center">
+          <svg class="w-4 h-4 mx-2" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
+          </svg>
+          <span class="text-primary font-medium">{entry.data.title}</span>
+        </li>
+      </ol>
+    </nav>
+
+    <article class="mx-auto max-w-3xl mt-6">
       <!-- Article Header -->
       <header class="mb-8">
         <div class="space-y-4">
@@ -77,10 +161,10 @@ const { Content } = await entry.render();
               </time>
             </div>
 
-            <!-- Reading Time (estimated) -->
+            <!-- Reading Time (calculated) -->
             <div class="flex items-center gap-2">
               <Clock size={18} className="text-primary/70" />
-              <span class="text-primary">10 min read</span>
+              <span class="text-primary">{readingTime} min read</span>
             </div>
           </div>
 
@@ -208,6 +292,14 @@ const { Content } = await entry.render();
         </div>
       </footer>
     </article>
+
+    <!-- Related Posts -->
+    <RelatedPosts 
+      currentSlug={entry.slug}
+      currentTags={entry.data.tags}
+      currentCategory={entry.data.category}
+      limit={3}
+    />
   </Container>
 </Layout>
 
