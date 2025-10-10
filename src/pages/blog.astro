@@ -23,20 +23,20 @@ publishedBlogEntries.sort(function (a, b) {
     "@type": "Blog",
     "name": "Krypton Scripts Blog",
     "description": "Expert insights on web development, FiveM scripts, and premium development solutions",
-    "url": "https://blog.kryptongame.com/blog",
+    "url": "https://services.kryptongame.com/blog",
     "publisher": {
       "@type": "Organization",
       "name": "Krypton Scripts",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://blog.kryptongame.com/krypton-logo.svg"
+        "url": "https://services.kryptongame.com/krypton-logo.svg"
       }
     },
     "blogPost": publishedBlogEntries.map((post) => ({
       "@type": "BlogPosting",
       "headline": post.data.title,
       "description": post.data.snippet,
-      "url": `https://blog.kryptongame.com/blog/${post.slug}`,
+      "url": `https://services.kryptongame.com/blog/${post.slug}`,
       "datePublished": post.data.publishDate.toISOString(),
       "author": {
         "@type": "Person",
@@ -49,7 +49,7 @@ publishedBlogEntries.sort(function (a, b) {
   <!-- Additional SEO Meta Tags -->
   <meta name="description" content="Expert insights on web development, FiveM scripts, and premium development solutions. Learn from our team of experienced developers." />
   <meta name="keywords" content="web development, FiveM scripts, programming tutorials, development blog, coding tips" />
-  <link rel="canonical" href="https://blog.kryptongame.com/blog" />
+  <link rel="canonical" href="https://services.kryptongame.com/blog" />
   <Container>
     <Sectionhead>
       <Fragment slot="title">Our Blog</Fragment>

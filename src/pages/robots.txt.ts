@@ -11,11 +11,11 @@ Disallow: /404
 Crawl-delay: 1
 
 # Sitemaps
-Sitemap: https://blog.kryptongame.com/sitemap-index.xml
-Sitemap: https://blog.kryptongame.com/sitemap.xml
+Sitemap: https://services.kryptongame.com/sitemap-index.xml
+Sitemap: https://services.kryptongame.com/sitemap.xml
 
 # Host directive
-Host: https://blog.kryptongame.com`;
+Host: https://services.kryptongame.com`;
 
   return new Response(robotsTxt, {
     headers: {

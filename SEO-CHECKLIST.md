@@ -3,7 +3,7 @@
 ## ✅ Completed Optimizations
 
 ### 1. Technical SEO
-- [x] **Site URL Configuration**: Updated to `https://blog.kryptongame.com`
+- [x] **Site URL Configuration**: Updated to `https://services.kryptongame.com`
 - [x] **Sitemap Generation**: Enhanced with custom sitemap.xml.ts
 - [x] **Robots.txt**: Comprehensive robots.txt with proper directives
 - [x] **Canonical URLs**: Implemented across all pages

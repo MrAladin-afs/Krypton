@@ -31,7 +31,7 @@ const {
   nofollow = false,
 } = Astro.props;
 
-const siteUrl = Astro.site || 'https://blog.kryptongame.com';
+const siteUrl = Astro.site || 'https://services.kryptongame.com';
 const fullImageUrl = image ? (image.startsWith('http') ? image : new URL(image, siteUrl).toString()) : new URL('/opengraph.jpg', siteUrl).toString();
 const canonicalUrl = canonical ? (canonical.startsWith('http') ? canonical : new URL(canonical, siteUrl).toString()) : new URL(Astro.url.pathname, siteUrl).toString();
 
