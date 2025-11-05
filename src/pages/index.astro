@@ -3,6 +3,7 @@ import Container from "@/components/container.astro";
 import Features from "@/components/features.astro";
 import Features1 from "@/components/features1.astro";
 import Hero from "@/components/hero.astro";
+import ProductsSection from "@/components/products-section.astro";
 import ReviewsSection from "@/components/reviews-section.astro";
 import FaqSection from "@/components/faq-section.astro";
 import Layout from "@/layouts/Layout.astro";
@@ -11,6 +12,9 @@ import Layout from "@/layouts/Layout.astro";
 <Layout title="">
   <Container>
     <Hero />
+    <div class="py-4 will-change-transform">
+      <ProductsSection />
+    </div>
     <div class="py-2 will-change-transform">
       <Features1 />
     </div>

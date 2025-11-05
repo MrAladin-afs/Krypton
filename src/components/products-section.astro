@@ -1,0 +1,290 @@
+---
+import Link from "@/components/ui/link.astro";
+import { Icon } from "astro-icon/components";
+import { Tick } from "@/components/ui/icons";
+import LazyYouTube from "./LazyYouTube";
+import { Image } from "astro:assets";
+
+const products = [
+  {
+    name: "Xenon v3",
+    version: "v3.0",
+    price: "One-time Payment",
+    priceAmount: "$160",
+    badge: "Popular",
+    isRecommended: false,
+    description: "Professional FiveM QBCore server with advanced features and optimized performance.",
+    features: [
+      "Free updates & support [Unlimited]",
+      "Custom verified role in our discord",
+      "Private community",
+      "General Support",
+      "Discord access",
+    ],
+    buttonText: "Buy Now",
+    buttonLink: "https://kryptongame.com/products/xenon-v3-complete-qb-core-server-pack",
+    videoId: "jWyqqjiwVrI",
+    videoTitle: "Xenon v3 - Professional FiveM Server",
+    thumbnailUrl: "https://img.youtube.com/vi/jWyqqjiwVrI/maxresdefault.jpg",
+    color: "from-blue-500 via-indigo-600 to-purple-700",
+    accentColor: "rgba(99, 102, 241, 0.8)",
+  },
+  {
+    name: "Krypton Base v1",
+    version: "v1.0",
+    price: "One-time Payment",
+    priceAmount: "$180",
+    badge: "Latest",
+    isRecommended: true,
+    description: "The newest version with cutting-edge features, enhanced performance, and latest optimizations.",
+    features: [
+      "Free updates & support [Unlimited]",
+      "Custom verified role in our discord",
+      "Private community",
+      "Priority Support",
+      "Discord access",
+    ],
+    buttonText: "Buy Now",
+    buttonLink: "https://kryptongame.com/products/xenon-v4-complete-qb-core-server-pack",
+    videoId: "wvJbFjYRHa8", // Replace with actual Krypton Base v1 video ID
+    videoTitle: "Krypton Base v1 - Latest FiveM Server",
+    thumbnailUrl: "https://img.youtube.com/vi/wvJbFjYRHa8/maxresdefault.jpg",
+    color: "from-purple-500 via-pink-600 to-rose-700",
+    accentColor: "rgba(168, 85, 247, 0.8)",
+  },
+];
+---
+
+<div id="products" class="relative py-8 md:py-12 overflow-hidden">
+  <!-- Background effects -->
+  <div class="absolute inset-0 cyber-grid opacity-5 z-0"></div>
+  
+  <div class="container mx-auto px-4 relative z-10">
+    <!-- Section Header -->
+    <div class="text-center mb-8" data-aos="fade-up" data-aos-duration="1000">
+      <h2 class="text-3xl md:text-4xl font-black mb-3 text-shimmer">
+        Build Professional FiveM Server
+      </h2>
+      <p class="text-base text-foreground/80 max-w-2xl mx-auto">
+        We create FiveM QBCore servers that captivate players and exceed expectations. With our premium server packages, you're just a few clicks away from running your dream server.
+      </p>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 max-w-6xl mx-auto">
+      {products.map((product, index) => (
+        <div
+          data-aos="fade-up"
+          data-aos-delay={index * 100}
+          data-aos-duration="800"
+          class="group relative"
+        >
+          {/* Recommended Badge */}
+          {product.isRecommended && (
+            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
+              <span class="inline-flex items-center rounded-full px-4 py-1 text-xs font-bold bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 text-white shadow-lg">
+                RECOMMENDED
+              </span>
+            </div>
+          )}
+
+          {/* Card Container */}
+          <div class="relative bg-card border-2 border-border rounded-lg overflow-hidden shadow-lg transition-all duration-300 flex flex-col hover:border-blue-500 product-card-glow">
+            {/* YouTube Video Section with Thumbnail */}
+            <div class="relative w-full overflow-hidden rounded-t-lg video-container" style="padding-bottom: 56.25%;">
+              {/* YouTube Thumbnail Background - Always visible */}
+              <img
+                src={product.thumbnailUrl}
+                alt={product.videoTitle}
+                class="absolute inset-0 w-full h-full object-cover z-0"
+                loading="lazy"
+              />
+              
+              {/* Glowing light effect overlay - similar to home page */}
+              <div class="absolute inset-0 pointer-events-none video-glow" style="z-index: 5;"></div>
+              
+              {/* LazyYouTube Overlay - Play button and video */}
+              <div class="absolute inset-0 z-10">
+                <LazyYouTube
+                  client:load
+                  videoId={product.videoId}
+                  title={product.videoTitle}
+                  thumbnailUrl={product.thumbnailUrl}
+                  thumbnailQuality="maxresdefault"
+                  autoplayOnLoad={false}
+                  params={{
+                    controls: 1,
+                    rel: 0,
+                    modestbranding: 1,
+                    playsinline: 1,
+                  }}
+                />
+              </div>
+            </div>
+
+            {/* Product Info */}
+            <div class="p-5 flex flex-col h-full">
+              {/* Header */}
+              <div class="text-center mb-4">
+                <div class="flex items-center justify-center gap-2 mb-2">
+                  <h3 class="text-xl md:text-2xl font-bold text-foreground">{product.name}</h3>
+                  <span class={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-gradient-to-r ${product.color} text-white`}>
+                    {product.badge}
+                  </span>
+                </div>
+                
+                {/* Price */}
+                <div class="mb-3">
+                  <p class="text-2xl md:text-3xl font-bold text-foreground">{product.priceAmount}</p>
+                  <p class="text-xs text-muted-foreground mt-1">{product.price} - Not monthly</p>
+                </div>
+              </div>
+
+              {/* Features List */}
+              <ul class="space-y-1.5 mb-4 flex-1">
+                {product.features.map((feature) => (
+                  <li class="flex items-start gap-2 text-xs text-foreground">
+                    <Tick class="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* CTA Button */}
+              <div class="mt-auto">
+                <Link
+                  href={product.buttonLink}
+                  class="w-full flex items-center justify-center gap-2 futuristic-button primary-button"
+                  rel="noopener"
+                  external
+                >
+                  <Icon class="text-current w-5 h-5" name="bx:bxs-rocket" />
+                  {product.buttonText}
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Bottom Info Section */}
+    <div class="text-center mt-8" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400">
+      <p class="text-muted-foreground mb-4 text-base">
+        With Xenon you will get updates & versions for lifetime!
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-6 text-xs text-muted-foreground">
+        <div class="flex items-center gap-2">
+          <Tick class="w-4 h-4 text-primary" />
+          <span>One-time Payment</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <Tick class="w-4 h-4 text-primary" />
+          <span>24/7 Support</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <Tick class="w-4 h-4 text-primary" />
+          <span>Weekly Updates</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Product card hover effects */
+  .group:hover .shadow-lg {
+    transform: translateY(-2px);
+  }
+  
+  /* Glowing light effect similar to home page video - reduced */
+  .product-card-glow {
+    box-shadow: 0 10px 30px -8px rgba(94, 95, 238, 0.2), 
+                0 0 40px rgba(94, 95, 238, 0.15);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .product-card-glow:hover {
+    box-shadow: 0 15px 40px -8px rgba(94, 95, 238, 0.3), 
+                0 0 60px rgba(94, 95, 238, 0.25),
+                0 0 80px rgba(94, 95, 238, 0.15);
+    transform: translateY(-4px);
+  }
+  
+  /* Video container glow - reduced */
+  .video-container {
+    box-shadow: 0 10px 30px -8px rgba(94, 95, 238, 0.25), 
+                0 0 50px rgba(94, 95, 238, 0.2);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .group:hover .video-container {
+    box-shadow: 0 15px 40px -8px rgba(94, 95, 238, 0.35), 
+                0 0 70px rgba(94, 95, 238, 0.3),
+                0 0 100px rgba(94, 95, 238, 0.2);
+  }
+  
+  /* Video glow overlay - reduced */
+  .video-glow {
+    background: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      transparent 50%,
+      rgba(94, 95, 238, 0.05) 70%,
+      rgba(94, 95, 238, 0.1) 85%,
+      rgba(94, 95, 238, 0.08) 100%
+    );
+    opacity: 0.4;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
+  }
+  
+  .group:hover .video-glow {
+    opacity: 0.6;
+    animation: videoGlowPulse 3s ease-in-out infinite;
+  }
+  
+  @keyframes videoGlowPulse {
+    0%, 100% {
+      opacity: 0.5;
+      background: radial-gradient(
+        ellipse at center,
+        transparent 0%,
+        transparent 50%,
+        rgba(94, 95, 238, 0.08) 70%,
+        rgba(94, 95, 238, 0.15) 85%,
+        rgba(94, 95, 238, 0.12) 100%
+      );
+    }
+    50% {
+      opacity: 0.7;
+      background: radial-gradient(
+        ellipse at center,
+        transparent 0%,
+        transparent 50%,
+        rgba(94, 95, 238, 0.12) 70%,
+        rgba(94, 95, 238, 0.2) 85%,
+        rgba(94, 95, 238, 0.18) 100%
+      );
+    }
+  }
+  
+  /* Blue glowing border animation - reduced */
+  .group:hover > div[class*="bg-card"] {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 15px rgba(59, 130, 246, 0.3), 
+                  0 0 25px rgba(59, 130, 246, 0.2),
+                  0 10px 30px -8px rgba(94, 95, 238, 0.25);
+    }
+    to {
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.4), 
+                  0 0 35px rgba(59, 130, 246, 0.3),
+                  0 15px 40px -8px rgba(94, 95, 238, 0.35),
+                  0 0 60px rgba(94, 95, 238, 0.25);
+    }
+  }
+</style>

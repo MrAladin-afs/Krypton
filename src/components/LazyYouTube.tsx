@@ -139,15 +139,17 @@ export default function LazyYouTube({
             className="absolute inset-0 w-full h-full flex items-center justify-center group cursor-pointer"
             aria-label={`Play ${title} video`}>
             {/* Play button overlay */}
-            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors duration-300"></div>
-            <div className="relative z-10 w-20 h-20 flex items-center justify-center rounded-full bg-primary/80 group-hover:bg-primary transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-primary/50">
+            <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 dark:bg-black/50 dark:group-hover:bg-black/60 transition-colors duration-300"></div>
+            <div className="relative z-10 w-24 h-24 flex items-center justify-center rounded-full bg-white/95 dark:bg-white/90 group-hover:bg-white transition-all duration-300 group-hover:scale-110 shadow-2xl dark:shadow-white/20 group-hover:shadow-white/40 backdrop-blur-sm border-2 border-white dark:border-white/80 ring-2 ring-white/30 dark:ring-white/20">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
-                fill="white"
-                className="w-10 h-10 ml-1"
+                fill="#5E5FEE"
+                className="w-14 h-14 ml-1 drop-shadow-lg"
                 aria-hidden="true">
-                <path d="M8 5v14l11-7z" />
+                <path 
+                  d="M8 5v14l11-7z" 
+                />
               </svg>
             </div>
 

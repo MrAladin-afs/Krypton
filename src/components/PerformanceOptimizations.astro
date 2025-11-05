@@ -72,7 +72,7 @@
   }
 
   // Core Web Vitals
-  if ('web-vital' in window) {
+  if (typeof window !== 'undefined') {
     import('web-vitals').then(({ getCLS, getFID, getFCP, getLCP, getTTFB }) => {
       getCLS(sendToAnalytics);
       getFID(sendToAnalytics);

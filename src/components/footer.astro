@@ -1,15 +1,46 @@
 <footer class="my-20">
-  <p class="text-center text-sm text-slate-500">
-    Copyright © {new Date().getFullYear()} KryptonScripts. All rights reserved.
-  </p>
+  <div class="container mx-auto px-4">
+    <!-- Legal Links -->
+    <div class="flex flex-wrap items-center justify-center gap-4 md:gap-6 mb-6 text-sm">
+      <a
+        href="/terms-and-conditions"
+        class="text-muted-foreground hover:text-foreground transition-colors hover:underline">
+        Terms and Conditions
+      </a>
+      <span class="text-muted-foreground">•</span>
+      <a
+        href="/privacy-policy"
+        class="text-muted-foreground hover:text-foreground transition-colors hover:underline">
+        Privacy Policy
+      </a>
+      <span class="text-muted-foreground">•</span>
+      <a
+        href="/refund-policy"
+        class="text-muted-foreground hover:text-foreground transition-colors hover:underline">
+        Refund Policy
+      </a>
+      <span class="text-muted-foreground">•</span>
+      <a
+        href="/terms-of-service"
+        class="text-muted-foreground hover:text-foreground transition-colors hover:underline">
+        Terms of Service
+      </a>
+    </div>
+
+    <!-- Copyright -->
+    <p class="text-center text-sm text-muted-foreground">
+      Copyright © {new Date().getFullYear()} Krypton Game. All rights reserved.
+    </p>
  
-  <p class="text-center text-xs text-slate-500 mt-1">
-    Made by <a
-      href="https://scalius.com"
-      target="_blank"
-      rel="noopener"
-      class="hover:underline">
-      Scalius.com
-    </a>
-  </p>
+    <!-- Made by -->
+    <p class="text-center text-xs text-muted-foreground mt-1">
+      Made by <a
+        href="https://scalius.com"
+        target="_blank"
+        rel="noopener"
+        class="hover:underline hover:text-foreground transition-colors">
+        Scalius.com
+      </a>
+    </p>
+  </div>
 </footer>

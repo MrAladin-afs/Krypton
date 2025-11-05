@@ -1,0 +1,135 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/container.astro";
+import Sectionhead from "@/components/sectionhead.astro";
+
+---
+
+<Layout title="Privacy Policy">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">
+        <span style="color: #3b82f6;">Privacy Policy</span>
+      </Fragment>
+      <Fragment slot="desc">
+        <span style="color: #3b82f6;">Your privacy is important to us. Learn how we collect and protect your information.</span>
+      </Fragment>
+    </Sectionhead>
+
+    <div class="flex flex-col gap-6 mx-auto max-w-4xl mt-16 text-foreground">
+      <div>
+        <h2 class="font-bold text-2xl mb-4">1. Introduction</h2>
+        <p class="text-base leading-relaxed">
+          Krypton Game ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website and use our services.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-bold text-2xl mb-4">2. Information We Collect</h2>
+        <p class="text-base leading-relaxed mb-3">
+          We may collect information about you in various ways:
+        </p>
+        <ul class="list-disc list-inside space-y-2 ml-4">
+          <li><strong>Personal Information:</strong> Name, email address, payment information, and other details you provide when making a purchase</li>
+          <li><strong>Usage Data:</strong> Information about how you access and use our website, including IP address, browser type, and pages visited</li>
+          <li><strong>Discord Information:</strong> Discord username and ID when you join our support server</li>
+          <li><strong>Cookies and Tracking:</strong> We use cookies and similar tracking technologies to track activity on our website</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-bold text-2xl mb-4">3. How We Use Your Information</h2>
+        <p class="text-base leading-relaxed mb-3">
+          We use the information we collect to:
+        </p>
+        <ul class="list-disc list-inside space-y-2 ml-4">
+          <li>Process and fulfill your orders</li>
+          <li>Provide customer support and respond to inquiries</li>
+          <li>Send you updates about your purchases and our services</li>
+          <li>Improve our website and services</li>
+          <li>Detect and prevent fraud and abuse</li>
+          <li>Comply with legal obligations</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-bold text-2xl mb-4">4. Data Storage and Security</h2>
+        <p class="text-base leading-relaxed">
+          We implement appropriate technical and organizational measures to protect your personal information. However, no method of transmission over the Internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your information, we cannot guarantee absolute security.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-bold text-2xl mb-4">5. Payment Information</h2>
+        <p class="text-base leading-relaxed">
+          All payment transactions are processed through secure third-party payment processors. We do not store your complete credit card information on our servers. Payment processors may collect and store your payment information in accordance with their own privacy policies.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-bold text-2xl mb-4">6. Cookies and Tracking Technologies</h2>
+        <p class="text-base leading-relaxed">
+          We use cookies and similar tracking technologies to track activity on our website and hold certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our service.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-bold text-2xl mb-4">7. Third-Party Services</h2>
+        <p class="text-base leading-relaxed">
+          We may use third-party services for various purposes, including:
+        </p>
+        <ul class="list-disc list-inside space-y-2 ml-4">
+          <li>Payment processing (PayPal, Stripe, etc.)</li>
+          <li>Analytics and website performance monitoring</li>
+          <li>Customer support platforms (Discord)</li>
+          <li>Email delivery services</li>
+        </ul>
+        <p class="text-base leading-relaxed mt-3">
+          These third parties have access to your information only to perform these tasks on our behalf and are obligated not to disclose or use it for any other purpose.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-bold text-2xl mb-4">8. Your Rights</h2>
+        <p class="text-base leading-relaxed mb-3">
+          Depending on your location, you may have certain rights regarding your personal information:
+        </p>
+        <ul class="list-disc list-inside space-y-2 ml-4">
+          <li>Right to access your personal data</li>
+          <li>Right to rectify inaccurate data</li>
+          <li>Right to request deletion of your data</li>
+          <li>Right to object to processing of your data</li>
+          <li>Right to data portability</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-bold text-2xl mb-4">9. Children's Privacy</h2>
+        <p class="text-base leading-relaxed">
+          Our services are not intended for individuals under the age of 18. We do not knowingly collect personal information from children. If you are a parent or guardian and believe your child has provided us with personal information, please contact us.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-bold text-2xl mb-4">10. Changes to This Privacy Policy</h2>
+        <p class="text-base leading-relaxed">
+          We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date. You are advised to review this Privacy Policy periodically for any changes.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-bold text-2xl mb-4">11. Contact Us</h2>
+        <p class="text-base leading-relaxed">
+          If you have any questions about this Privacy Policy, please contact us through our Discord server or email.
+        </p>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-border">
+        <p class="text-sm text-muted-foreground">
+          Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
+      </div>
+    </div>
+  </Container>
+</Layout>
+

@@ -1,0 +1,107 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Container from "@/components/container.astro";
+import Sectionhead from "@/components/sectionhead.astro";
+
+---
+
+<Layout title="Refund Policy">
+  <Container>
+    <Sectionhead>
+      <Fragment slot="title">
+        <span style="color: #3b82f6;">Refund Policy</span>
+      </Fragment>
+      <Fragment slot="desc">
+        <span style="color: #3b82f6;">Our policy regarding refunds and returns.</span>
+      </Fragment>
+    </Sectionhead>
+
+    <div class="flex flex-col gap-6 mx-auto max-w-4xl mt-16 text-foreground">
+      <div>
+        <h2 class="font-bold text-2xl mb-4">1. Refund Eligibility</h2>
+        <p class="text-base leading-relaxed">
+          Due to the digital nature of our products (FiveM scripts and resources), all sales are generally final. However, we may offer refunds in specific circumstances as outlined below.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-bold text-2xl mb-4">2. Eligible Refund Requests</h2>
+        <p class="text-base leading-relaxed mb-3">
+          Refund requests may be considered in the following cases:
+        </p>
+        <ul class="list-disc list-inside space-y-2 ml-4">
+          <li><strong>Product Not Working:</strong> If the product does not function as described and our support team cannot resolve the issue within 7 days of purchase</li>
+          <li><strong>Duplicate Purchase:</strong> If you accidentally purchased the same product twice</li>
+          <li><strong>Technical Incompatibility:</strong> If the product is incompatible with your server setup and this was not clearly stated before purchase</li>
+          <li><strong>Unauthorized Purchase:</strong> If your payment method was used without your authorization</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-bold text-2xl mb-4">3. Non-Refundable Items</h2>
+        <p class="text-base leading-relaxed mb-3">
+          The following circumstances are NOT eligible for refunds:
+        </p>
+        <ul class="list-disc list-inside space-y-2 ml-4">
+          <li>Change of mind after purchase</li>
+          <li>Inability to install or configure the product (support is available)</li>
+          <li>Compatibility issues that were disclosed before purchase</li>
+          <li>Products that have been modified or customized</li>
+          <li>Refund requests made more than 30 days after purchase</li>
+          <li>Products purchased during sales or special promotions (unless otherwise specified)</li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="font-bold text-2xl mb-4">4. Refund Process</h2>
+        <p class="text-base leading-relaxed mb-3">
+          To request a refund:
+        </p>
+        <ol class="list-decimal list-inside space-y-2 ml-4">
+          <li>Contact our support team through Discord within 7 days of purchase</li>
+          <li>Provide your purchase receipt or transaction ID</li>
+          <li>Explain the reason for your refund request</li>
+          <li>Allow our team to attempt to resolve any issues first</li>
+        </ol>
+        <p class="text-base leading-relaxed mt-3">
+          Refund requests will be reviewed within 3-5 business days. Approved refunds will be processed to the original payment method within 7-14 business days.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-bold text-2xl mb-4">5. Partial Refunds</h2>
+        <p class="text-base leading-relaxed">
+          In some cases, we may offer partial refunds if only part of a bundle or package is not functioning properly. This will be determined on a case-by-case basis.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-bold text-2xl mb-4">6. Chargebacks</h2>
+        <p class="text-base leading-relaxed">
+          If you initiate a chargeback or dispute a payment without first contacting our support team, you will be permanently banned from purchasing our products. We encourage you to contact us directly to resolve any issues.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-bold text-2xl mb-4">7. Updates and Support</h2>
+        <p class="text-base leading-relaxed">
+          Please note that all products include lifetime updates and support. Before requesting a refund, we encourage you to contact our support team, as they may be able to resolve your issue or provide a solution.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="font-bold text-2xl mb-4">8. Contact for Refunds</h2>
+        <p class="text-base leading-relaxed">
+          To request a refund or discuss refund eligibility, please contact us through our Discord support server. Include your purchase receipt and a detailed explanation of your refund request.
+        </p>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-border">
+        <p class="text-sm text-muted-foreground">
+          Last updated: {new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
+      </div>
+    </div>
+  </Container>
+</Layout>
+

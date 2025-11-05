@@ -21,8 +21,8 @@ const resolvedImageWithDomain = new URL(
 const { title } = Astro.props;
 
 const makeTitle = title
-  ? title + " | " + "Krypton Scripts"
-  : "Krypton Scripts - Premium Development Solutions";
+  ? title + " | " + "Krypton Game"
+  : "Krypton Game - Premium Development Solutions";
 ---
 
 <!doctype html>
@@ -30,13 +30,15 @@ const makeTitle = title
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/avif" href="/favicon.heif" />
+    <link rel="icon" type="image/svg+xml" href="/krypton-logo.svg" />
+    <link rel="icon" type="image/png" href="/images/krypton-logo.png" />
+    <link rel="apple-touch-icon" href="/images/krypton-logo.png" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- <link rel="preload" as="image" href={src} alt="Hero" /> -->
     <SEO
       title={makeTitle}
-      description="Krypton Scripts offers premium development solutions with 24/7 support, creativity, optimization, and futuristic designs. Expert web development, FiveM scripts, and custom solutions."
+      description="Krypton Game offers premium development solutions with 24/7 support, creativity, optimization, and futuristic designs. Expert web development, FiveM scripts, and custom solutions."
       canonical={canonicalURL}
       twitter={{
         creator: "@kryptonscripts",
@@ -47,11 +49,11 @@ const makeTitle = title
         basic: {
           url: canonicalURL,
           type: "website",
-          title: `Krypton Scripts - Premium Development Solutions`,
+          title: `Krypton Game - Premium Development Solutions`,
           image: resolvedImageWithDomain,
         },
         image: {
-          alt: "Krypton Scripts - Premium Development Solutions",
+          alt: "Krypton Game - Premium Development Solutions",
           width: 1200,
           height: 630,
         },
@@ -62,8 +64,8 @@ const makeTitle = title
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow" />
     <meta name="bingbot" content="index, follow" />
-    <meta name="author" content="Krypton Scripts" />
-    <meta name="publisher" content="Krypton Scripts" />
+    <meta name="author" content="Krypton Game" />
+    <meta name="publisher" content="Krypton Game" />
     <meta name="theme-color" content="#6366f1" />
     <meta name="msapplication-TileColor" content="#6366f1" />
     
@@ -92,7 +94,7 @@ const makeTitle = title
       {
         "@context": "https://schema.org",
         "@type": "Organization",
-        "name": "Krypton Scripts",
+        "name": "Krypton Game",
         "url": "https://services.kryptongame.com",
         "logo": "https://services.kryptongame.com/krypton-logo.svg",
         "description": "Premium development solutions with 24/7 support, creativity, optimization, and futuristic designs",
