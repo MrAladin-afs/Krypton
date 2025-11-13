@@ -1,6 +1,6 @@
 ---
 draft: false
-title: "🚨 Zero Hour is FREE on the Epic Games Store! Don't Miss This Bangladeshi-Made Tactical Shooter!"
+title: " Zero Hour is FREE on the Epic Games Store! Don't Miss This Bangladeshi-Made Tactical Shooter!"
 snippet: "Zero Hour, a grounded Bangladeshi-made tactical FPS, is free on the Epic Games Store through November 20—claim it now and keep it forever."
 image:
   src: "/images/blog/zero-hour.png"
@@ -15,12 +15,6 @@ seoDescription: "Claim Zero Hour free on the Epic Games Store through November 2
 featured: false
 readingTime: 4
 ---
-
-## 🚨 Zero Hour is FREE on the Epic Games Store! Don't Miss This **Bangladeshi-Made** Tactical Shooter!
-
-Get ready to breach and clear! The acclaimed tactical first-person shooter, **Zero Hour**, is currently available for **FREE** on the Epic Games Store. This is your chance to add a grounded, team-based CQB (Close Quarters Battle) experience to your PC library.
-
-**Act Fast!** This offer is only available for a limited time. You can claim your free copy now **through November 20th.** Once claimed, the game is yours to keep forever!
 
 ---
 
