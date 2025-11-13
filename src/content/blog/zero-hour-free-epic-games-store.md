@@ -42,7 +42,7 @@ What truly sets *Zero Hour* apart is its deep connection to its country of origi
 
 Claiming *Zero Hour* is simple:
 
-1. Navigate to the **Epic Games Store** website or open the Epic Games Launcher on your PC.
+1. Navigate to the [EPIC GAME STORE](https://store.epicgames.com/en-US/p/zero-hour-8449a0) or open the Epic Games Launcher on your PC.
 2. Locate *Zero Hour* in the Free Games section.
 3. Click on the game and complete the "Get" process.
 
